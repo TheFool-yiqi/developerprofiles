@@ -25,7 +25,8 @@
 | 安装命令 | `npm install` |
 | 构建命令 | `npm run build:root` |
 | 输出目录 | `dist` |
-| Node 版本 | 18 或 20 |
+| Node 版本 | 18 或 20（日志里用 24 也可通过） |
+| 框架类型 | 选 **Vite** 或 React（自定义构建命令时影响小） |
 
 环境变量（如有单独配置页）：
 
@@ -33,7 +34,25 @@
 |--------|-----|
 | `VITE_BASE` | `/` |
 
-> 使用 `build:root` 是因为 Webify 分配的访问域名为**根路径**，不是 `github.io/仓库名/` 子路径。
+### 3.1 部署路径（易错）
+
+| 配置项 | 正确值 | 错误示例 |
+|--------|--------|----------|
+| **部署目录 / 挂载路径** | `/` | `/developerprofiles` |
+
+> 使用 `build:root` 时站点在域名**根路径**访问；若部署到 `/developerprofiles` 会导致资源 404、页面空白。
+
+### 3.2 cloudbaserc.json 中的 envId
+
+仓库内 [`cloudbaserc.json`](../cloudbaserc.json) 必须填写有效的 `envId`（在 Webify 控制台 → 环境设置中查看，形如 `react-xxxxxxxx`）。
+
+若 `envId` 为空，部署阶段会报错：
+
+```text
+无效的配置文件，配置文件必须包含环境 Id(envId) 字段
+```
+
+当前仓库已配置为本环境 ID，若你新建了其他 CloudBase 环境，请改为你自己的 `envId`。
 
 ### 4. 部署与访问
 
@@ -84,11 +103,21 @@ tcb app deploy --framework vite -e <你的-envId>
 
 ## 五、常见问题
 
+**Q：构建成功但部署报 `envId` 无效？**  
+打开 `cloudbaserc.json`，将 `envId` 改为控制台里你的 CloudBase 环境 ID（不能为空字符串）。
+
+**Q：部署命令是 `tcb hosting deploy ./dist /developerprofiles`？**  
+把最后的挂载路径改成 `/`：
+
+```bash
+tcb hosting deploy ./dist / -e <你的-envId>
+```
+
 **Q：构建失败 `tsc` 或 `lint`？**  
 本地先执行 `npm run build:root` 确保通过，再查看 Webify 构建日志。
 
 **Q：页面空白？**  
-检查是否误用 `build`（子路径）而非 `build:root`；应用根路径部署必须用 `VITE_BASE=/`。
+检查：① `build:root` + 部署路径 `/`；② `VITE_BASE=/`；③ 不要混用子路径 `/developerprofiles`。
 
 **Q：还想保留 GitHub Pages？**  
 可以，仅作备用：`npm run build` + GitHub Pages，不要写进面向国内的主链接。
