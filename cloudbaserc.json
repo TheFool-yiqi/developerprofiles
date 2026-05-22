@@ -1,0 +1,16 @@
+{
+  "$comment": "腾讯云 Webify / CloudBase CLI 部署配置。envId 在控制台创建环境后填入。",
+  "version": "2.0",
+  "envId": "",
+  "app": {
+    "serviceName": "developerprofiles",
+    "framework": "vite",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build:root",
+    "outputDir": "dist",
+    "deployPath": "/",
+    "envVariables": {
+      "VITE_BASE": "/"
+    }
+  }
+}
