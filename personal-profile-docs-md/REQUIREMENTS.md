@@ -31,7 +31,7 @@
 | 联系模块 | 首版 **仅展示链接**（无联系表单、无单独「联系」提交按钮） |
 | 头像 / 简历 | 可后期添加；简历为 `public/` 下 PDF（如 `/resume.pdf`） |
 | 动画 | 安装 `framer-motion`，仅用于克制模块进入动画 + CSS hover |
-| 部署 | **国内主站**：Gitee Pages `https://<user>.gitee.io/developerprofiles/`；GitHub Pages 仅作备用 |
+| 部署 | **代码托管 GitHub**；**站点部署在国内静态托管节点**（非 GitHub Pages）；GitHub Pages 仅备用 |
 | 内容数据 | 首版使用占位数据，上线后由用户替换 |
 
 ---
@@ -44,7 +44,7 @@
 2. 用于展示个人品牌、技能能力、项目案例和联系方式。
 3. 支持后续快速替换个人资料、头像、简历、项目与社交链接。
 4. 适配桌面端、平板端和移动端浏览体验。
-5. **主要面向中国大陆访问**：优先部署 Gitee Pages 或国内云静态托管；GitHub Pages 作备用，不推荐 Vercel / Netlify 作为国内主站。
+5. **主要面向中国大陆访问**：代码保留在 GitHub；将构建产物 `dist/` 部署到国内云静态托管（机房/CDN 在国内）；GitHub Pages 仅作备用。
 
 ### 3.2 设计目标
 
@@ -434,23 +434,26 @@ src/data/profile.ts
 
 ---
 
-## 13. 部署需求（国内优先）
+## 13. 部署需求（国内节点 + GitHub 托管代码）
 
-### 13.1 主站（推荐）
+### 13.1 代码托管（不变）
 
-- **Gitee Pages**：仓库名 `developerprofiles`，访问 `https://<用户名>.gitee.io/developerprofiles/`。
-- 构建：`npm run build:gitee`，发布目录 `dist/`。
-- 国内访问速度与稳定性优于 GitHub Pages。
+- **唯一源仓库**：GitHub `developerprofiles`。
+- 开发流程：`git push origin`，不要求迁移到 Gitee。
 
-### 13.2 可选增强
+### 13.2 站点部署（国内）
 
-- **独立域名 + 腾讯云 / 阿里云静态托管 + CDN**：使用 `npm run build:root`（`base: '/'`），需按厂商要求完成 ICP 备案。
-- **GitHub Pages**：仅作代码同步与海外/备用访问，不作为国内招聘主链接。
+- 将 `npm run build:root` 产物发布到**国内静态托管**（推荐：腾讯云 Webify 关联 GitHub 仓库；或阿里云/腾讯云 OSS+CDN）。
+- 访客从国内 CDN/机房访问，而非 GitHub Pages 海外节点。
 
-### 13.3 构建与资源
+### 13.3 备用
 
-- 默认子路径构建：`VITE_BASE=/developerprofiles/`（见 `docs/DEPLOY-CN.md`）。
-- 头像、简历放在 `public/`，构建后随 `dist/` 一并发布。
+- **GitHub Pages**：`npm run build`（子路径），仅海外或临时预览。
+
+### 13.4 构建与资源
+
+- 国内主站：`VITE_BASE=/`（`npm run build:root`）。
+- 详见 [docs/DEPLOY-CN.md](../docs/DEPLOY-CN.md)。
 
 ---
 
@@ -507,8 +510,8 @@ src/data/profile.ts
 ### 阶段 5：测试与部署
 
 - Lighthouse 抽检
-- 部署 **Gitee Pages**（国内主站）
-- 可选：GitHub Pages 备用镜像
+- 部署到**国内静态托管**（代码仍在 GitHub）
+- 可选：GitHub Pages 备用
 
 ---
 

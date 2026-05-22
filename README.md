@@ -2,7 +2,14 @@
 
 全中文、单页滚动式个人资料网站（React + TypeScript + Vite + Tailwind CSS）。
 
-> **主要展示在中国大陆**：国内访问请优先使用 **Gitee Pages** 或国内云静态托管，详见 [docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)。
+## 架构
+
+| 层级 | 位置 |
+|------|------|
+| **代码托管** | GitHub（唯一源仓库） |
+| **站点部署** | 国内静态托管（腾讯云 Webify / 阿里云 OSS+CDN 等） |
+
+国内访问部署说明：[docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)
 
 ## 本地运行
 
@@ -11,34 +18,28 @@ npm install
 npm run dev
 ```
 
-开发地址：**http://127.0.0.1:3000/developerprofiles/**（须带 `base` 子路径）。
+开发地址：**http://127.0.0.1:3000/developerprofiles/**
 
 ## 替换个人资料
 
-编辑 [`src/data/profile.ts`](src/data/profile.ts)。可选静态资源：
+编辑 [`src/data/profile.ts`](src/data/profile.ts)。
 
-- `public/avatar.png` — 头像
-- `public/resume.pdf` — 简历，并设置 `resumeUrl: "/resume.pdf"`
-
-## 构建与检查
+## 构建
 
 ```bash
 npm run lint
-npm run build:gitee    # 国内 Gitee Pages（推荐）
-npm run build:root     # 独立域名根路径
-npm run preview:gitee
+npm run build:root     # 国内主站（域名根路径，推荐）
+npm run build          # GitHub Pages 子路径备用
 ```
 
-## 部署（国内优先）
+## 部署流程（摘要）
 
-| 场景 | 命令 | 说明 |
-|------|------|------|
-| **国内主站** | `npm run build:gitee` | 发布 `dist/` 到 [Gitee Pages](https://gitee.com/) |
-| 独立域名 | `npm run build:root` | 腾讯云 / 阿里云静态托管 + CDN |
-| 备用 | `npm run build` | GitHub Pages（国内访问不稳定） |
+1. 在 GitHub 正常开发：`git push origin master`
+2. 国内平台 **关联该 GitHub 仓库**（如腾讯云 Webify），或本地 `build:root` 后上传 `dist/` 到 OSS/COS
+3. 对外分享 **国内托管域名**，不要用 GitHub Pages 作为国内主链接
 
-完整步骤：[docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)
+详见 [docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)
 
 ## 文档
 
-需求与设计：[personal-profile-docs-md/](personal-profile-docs-md/)
+[personal-profile-docs-md/](personal-profile-docs-md/)

@@ -5,7 +5,7 @@
 > 当前版本：v0.1  
 > 技术栈：React + TypeScript + Vite + Tailwind CSS + framer-motion  
 > 目标形态：单页滚动式个人资料网站  
-> 部署：国内优先 Gitee Pages；详见 [docs/DEPLOY-CN.md](../docs/DEPLOY-CN.md)  
+> 部署：代码在 GitHub，站点在国内静态托管；详见 [docs/DEPLOY-CN.md](../docs/DEPLOY-CN.md)  
 > 关联文档：[REQUIREMENTS.md](./REQUIREMENTS.md) · [AGENTS.md](./AGENTS.md)
 
 ---
@@ -23,7 +23,7 @@
 | 移动导航 | 汉堡 + 抽屉（React state 控制） |
 | 包管理 | 仅 npm |
 | 代码质量 | ESLint + Prettier |
-| 部署 | 国内主站 Gitee Pages；`build:gitee` / `build:root` 见环境变量 `VITE_BASE` |
+| 部署 | 国内静态托管节点；`build:root` 为主站；`build` 为 GitHub Pages 备用 |
 
 ---
 
@@ -428,32 +428,30 @@ export default defineConfig({
 
 ```bash
 npm run dev
-npm run build:gitee      # 国内 Gitee Pages（推荐）
-npm run build:root       # 独立域名根路径
-npm run preview:gitee
+npm run build:root       # 国内主站（根路径）
+npm run build            # GitHub Pages 子路径备用
 ```
 
-`vite.config.ts` 通过环境变量 `VITE_BASE` 设置 `base`：
+`vite.config.ts` 通过 `VITE_BASE` 设置 `base`：
 
-| 模式 | 文件 | `VITE_BASE` |
-|------|------|-------------|
-| 默认 / gitee | `.env.production` / `.env.gitee` | `/developerprofiles/` |
-| 根路径 | `.env.root` | `/` |
+| 模式 | 文件 | `VITE_BASE` | 用途 |
+|------|------|-------------|------|
+| 根路径 | `.env.root` | `/` | **国内主站** |
+| 默认 | `.env.production` | `/developerprofiles/` | GitHub Pages 备用 |
 
-### 10.1 Gitee Pages（国内主站）
+### 10.1 代码托管（GitHub）
 
-1. 代码推送到 Gitee 仓库 `developerprofiles`
-2. `npm run build:gitee` 生成 `dist/`
-3. 在 Gitee Pages 发布 `dist`（或配置 CI 自动构建）
-4. 访问：`https://<username>.gitee.io/developerprofiles/`
+- 源仓库：`https://github.com/TheFool-yiqi/developerprofiles`
+- 不在此方案中迁移代码托管平台。
 
-### 10.2 GitHub Pages（备用）
+### 10.2 站点部署（国内节点，推荐）
 
-国内访问不稳定，仅建议作镜像：`npm run build` → 发布 `dist` → `https://<username>.github.io/developerprofiles/`
+1. **腾讯云 Webify**：导入 GitHub 仓库 → 构建 `npm run build:root` → 发布 `dist` → 国内域名访问。
+2. **阿里云 OSS / 腾讯云 COS + CDN**：本地或 CI 构建后上传 `dist/`。
 
-### 10.3 国内云静态托管（可选）
+### 10.3 GitHub Pages（备用）
 
-`npm run build:root` 后，将 `dist/` 上传腾讯云 Webify / 静态网站托管或阿里云 OSS+CDN；绑定域名需备案。
+`npm run build` → 海外节点 → 国内访问不稳定。
 
 ### 10.4 静态资源路径
 
@@ -526,7 +524,7 @@ Performance ≥ 85，Accessibility ≥ 90（见需求文档）。
 ### 13.4 发布
 
 - [ ] README（运行 / 替换资料 / 部署）
-- [ ] Gitee Pages 部署（国内主站）
+- [ ] 国内静态托管部署（代码仍在 GitHub）
 - [ ] （可选）GitHub Pages 备用
 - [ ] Lighthouse 抽检
 
