@@ -31,7 +31,7 @@
 | 联系模块 | 首版 **仅展示链接**（无联系表单、无单独「联系」提交按钮） |
 | 头像 / 简历 | 可后期添加；简历为 `public/` 下 PDF（如 `/resume.pdf`） |
 | 动画 | 安装 `framer-motion`，仅用于克制模块进入动画 + CSS hover |
-| 部署 | GitHub Pages 子路径：`https://<user>.github.io/developerprofiles/` |
+| 部署 | **国内主站**：Gitee Pages `https://<user>.gitee.io/developerprofiles/`；GitHub Pages 仅作备用 |
 | 内容数据 | 首版使用占位数据，上线后由用户替换 |
 
 ---
@@ -44,7 +44,7 @@
 2. 用于展示个人品牌、技能能力、项目案例和联系方式。
 3. 支持后续快速替换个人资料、头像、简历、项目与社交链接。
 4. 适配桌面端、平板端和移动端浏览体验。
-5. 部署到 GitHub Pages（`developerprofiles` 子路径）；亦可迁移至 Vercel / Netlify 等静态托管。
+5. **主要面向中国大陆访问**：优先部署 Gitee Pages 或国内云静态托管；GitHub Pages 作备用，不推荐 Vercel / Netlify 作为国内主站。
 
 ### 3.2 设计目标
 
@@ -434,12 +434,23 @@ src/data/profile.ts
 
 ---
 
-## 13. 部署需求
+## 13. 部署需求（国内优先）
 
-- **首版目标**：GitHub Pages，仓库 `developerprofiles`，访问路径为子路径 `/developerprofiles/`。
-- 构建产物目录：`dist`。
-- Vite 需配置 `base: '/developerprofiles/'`（见技术文档）。
-- 头像、简历放在 `public/`，构建后可通过 `/developerprofiles/avatar.jpg` 等形式访问。
+### 13.1 主站（推荐）
+
+- **Gitee Pages**：仓库名 `developerprofiles`，访问 `https://<用户名>.gitee.io/developerprofiles/`。
+- 构建：`npm run build:gitee`，发布目录 `dist/`。
+- 国内访问速度与稳定性优于 GitHub Pages。
+
+### 13.2 可选增强
+
+- **独立域名 + 腾讯云 / 阿里云静态托管 + CDN**：使用 `npm run build:root`（`base: '/'`），需按厂商要求完成 ICP 备案。
+- **GitHub Pages**：仅作代码同步与海外/备用访问，不作为国内招聘主链接。
+
+### 13.3 构建与资源
+
+- 默认子路径构建：`VITE_BASE=/developerprofiles/`（见 `docs/DEPLOY-CN.md`）。
+- 头像、简历放在 `public/`，构建后随 `dist/` 一并发布。
 
 ---
 
@@ -496,7 +507,8 @@ src/data/profile.ts
 ### 阶段 5：测试与部署
 
 - Lighthouse 抽检
-- 部署 GitHub Pages
+- 部署 **Gitee Pages**（国内主站）
+- 可选：GitHub Pages 备用镜像
 
 ---
 

@@ -5,7 +5,7 @@
 > 当前版本：v0.1  
 > 技术栈：React + TypeScript + Vite + Tailwind CSS + framer-motion  
 > 目标形态：单页滚动式个人资料网站  
-> 部署：GitHub Pages 子路径 `/developerprofiles/`  
+> 部署：国内优先 Gitee Pages；详见 [docs/DEPLOY-CN.md](../docs/DEPLOY-CN.md)  
 > 关联文档：[REQUIREMENTS.md](./REQUIREMENTS.md) · [AGENTS.md](./AGENTS.md)
 
 ---
@@ -23,7 +23,7 @@
 | 移动导航 | 汉堡 + 抽屉（React state 控制） |
 | 包管理 | 仅 npm |
 | 代码质量 | ESLint + Prettier |
-| 部署 base | `'/developerprofiles/'` |
+| 部署 | 国内主站 Gitee Pages；`build:gitee` / `build:root` 见环境变量 `VITE_BASE` |
 
 ---
 
@@ -424,20 +424,38 @@ export default defineConfig({
 
 ## 10. 构建、预览与部署
 
+> 完整国内部署步骤：[docs/DEPLOY-CN.md](../docs/DEPLOY-CN.md)
+
 ```bash
-npm run dev          # 开发（根路径 /）
-npm run build
-npm run preview      # 验证 base 子路径资源
+npm run dev
+npm run build:gitee      # 国内 Gitee Pages（推荐）
+npm run build:root       # 独立域名根路径
+npm run preview:gitee
 ```
 
-### 10.1 GitHub Pages
+`vite.config.ts` 通过环境变量 `VITE_BASE` 设置 `base`：
 
-1. `vite.config.ts` 中 `base: '/developerprofiles/'`
-2. GitHub Actions 或 `gh-pages` 发布 `dist`
-3. 仓库设置 Pages 源为 `gh-pages` 或 Actions 产物
-4. 访问：`https://<username>.github.io/developerprofiles/`
+| 模式 | 文件 | `VITE_BASE` |
+|------|------|-------------|
+| 默认 / gitee | `.env.production` / `.env.gitee` | `/developerprofiles/` |
+| 根路径 | `.env.root` | `/` |
 
-### 10.2 静态资源路径
+### 10.1 Gitee Pages（国内主站）
+
+1. 代码推送到 Gitee 仓库 `developerprofiles`
+2. `npm run build:gitee` 生成 `dist/`
+3. 在 Gitee Pages 发布 `dist`（或配置 CI 自动构建）
+4. 访问：`https://<username>.gitee.io/developerprofiles/`
+
+### 10.2 GitHub Pages（备用）
+
+国内访问不稳定，仅建议作镜像：`npm run build` → 发布 `dist` → `https://<username>.github.io/developerprofiles/`
+
+### 10.3 国内云静态托管（可选）
+
+`npm run build:root` 后，将 `dist/` 上传腾讯云 Webify / 静态网站托管或阿里云 OSS+CDN；绑定域名需备案。
+
+### 10.4 静态资源路径
 
 - `public/avatar.jpg` → 配置 `avatar: "/avatar.jpg"`（Vite 会加 base 前缀于构建引用；`<img src>` 使用 `import.meta.env.BASE_URL + 'avatar.jpg'` 或放在 public 根相对 base）
 
@@ -508,7 +526,8 @@ Performance ≥ 85，Accessibility ≥ 90（见需求文档）。
 ### 13.4 发布
 
 - [ ] README（运行 / 替换资料 / 部署）
-- [ ] GitHub Pages 部署
+- [ ] Gitee Pages 部署（国内主站）
+- [ ] （可选）GitHub Pages 备用
 - [ ] Lighthouse 抽检
 
 ---

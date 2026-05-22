@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:gitee": "tsc -b && vite build --mode gitee",
+    "build:root": "tsc -b && vite build --mode root",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:gitee": "vite preview --mode gitee"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
