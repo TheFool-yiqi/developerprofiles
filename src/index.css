@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-panda-black: #0c0c0c;
+  --color-panda-white: #faf9f6;
+  --color-panda-cream: #f0efeb;
+  --color-panda-gray: #d4d4d0;
+  --color-panda-charcoal: #1a1a1a;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -14,12 +22,19 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  background: linear-gradient(
-    165deg,
-    #000000 0%,
-    #262626 38%,
-    #a3a3a3 72%,
-    #f5f5f5 100%
-  );
+  color: var(--color-panda-black);
+  /* 熊猫色：米白底色 + 四角墨色晕染，模拟黑白斑块 */
+  background-color: var(--color-panda-white);
+  background-image:
+    radial-gradient(ellipse 58% 48% at 0% 0%, var(--color-panda-black) 0%, transparent 68%),
+    radial-gradient(ellipse 52% 42% at 100% 0%, var(--color-panda-black) 0%, transparent 64%),
+    radial-gradient(ellipse 48% 38% at 100% 100%, var(--color-panda-black) 0%, transparent 58%),
+    radial-gradient(ellipse 42% 34% at 0% 100%, var(--color-panda-black) 0%, transparent 54%),
+    linear-gradient(
+      180deg,
+      var(--color-panda-white) 0%,
+      var(--color-panda-cream) 45%,
+      var(--color-panda-white) 100%
+    );
   background-attachment: fixed;
 }

@@ -6,6 +6,7 @@ import {
   hasProjects,
   hasSkills,
 } from "../utils/sectionVisibility";
+import { navBar } from "../utils/theme";
 import MobileDrawer, { type NavItem } from "./MobileDrawer";
 
 interface NavbarProps {
@@ -29,11 +30,11 @@ export default function Navbar({ profile }: NavbarProps) {
   }, [profile]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-30 border-b border-neutral-700 bg-black/85 backdrop-blur-md">
+    <header className={`fixed inset-x-0 top-0 z-30 ${navBar}`}>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a
           href="#home"
-          className="flex h-9 min-w-9 items-center justify-center rounded-md border border-neutral-600 bg-white px-2 text-sm font-bold tracking-widest text-black"
+          className="flex h-9 min-w-9 items-center justify-center rounded-md border border-panda-gray bg-panda-white px-2 text-sm font-bold tracking-widest text-panda-black"
           aria-label={`${profile.name}，返回首页`}
         >
           {profile.initials}
@@ -43,7 +44,7 @@ export default function Navbar({ profile }: NavbarProps) {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-neutral-400 transition hover:text-white"
+              className="text-sm text-panda-gray transition hover:text-panda-white"
             >
               {item.label}
             </a>
@@ -51,7 +52,7 @@ export default function Navbar({ profile }: NavbarProps) {
         </nav>
         <button
           type="button"
-          className="rounded-lg p-2 text-neutral-200 hover:bg-neutral-800 md:hidden"
+          className="rounded-lg p-2 text-panda-cream hover:bg-panda-charcoal md:hidden"
           aria-label="打开菜单"
           onClick={() => setOpen(true)}
         >

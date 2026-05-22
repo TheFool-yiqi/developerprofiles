@@ -3,7 +3,7 @@ import { Github, Mail, MessageCircle, Phone } from "lucide-react";
 import type { Profile } from "../data/types";
 import { hasProjects } from "../utils/sectionVisibility";
 import { publicUrl } from "../utils/publicUrl";
-import { btnPrimary, btnSecondaryDark } from "../utils/theme";
+import { btnPrimary, btnSecondaryDark, sectionDark } from "../utils/theme";
 
 interface HeroProps {
   profile: Profile;
@@ -18,7 +18,7 @@ export default function Hero({ profile }: HeroProps) {
   return (
     <section
       id="home"
-      className="scroll-mt-24 border-b border-neutral-800 bg-black pb-20 pt-28 text-neutral-100 md:pb-28 md:pt-32"
+      className={`scroll-mt-24 border-b pb-20 pt-28 md:pb-28 md:pt-32 ${sectionDark}`}
     >
       <motion.div
         className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[auto_1fr] md:items-center md:gap-14"
@@ -31,11 +31,11 @@ export default function Hero({ profile }: HeroProps) {
             <img
               src={avatarSrc}
               alt={`${profile.name} 的头像`}
-              className="h-36 w-36 rounded-full border-2 border-neutral-500 object-cover md:h-44 md:w-44"
+              className="h-36 w-36 rounded-full border-2 border-panda-gray object-cover md:h-44 md:w-44"
             />
           ) : (
             <div
-              className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-neutral-600 bg-neutral-900 text-3xl font-bold tracking-widest text-white md:h-44 md:w-44"
+              className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-panda-charcoal bg-panda-charcoal text-3xl font-bold tracking-widest text-panda-white md:h-44 md:w-44"
               aria-hidden
             >
               {avatarFallback}
@@ -43,14 +43,14 @@ export default function Hero({ profile }: HeroProps) {
           )}
         </div>
         <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-neutral-400">
+          <p className="text-sm font-medium uppercase tracking-widest text-panda-gray">
             个人资料
           </p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-white md:text-5xl">
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-panda-white md:text-5xl">
             {profile.name}
           </h1>
-          <p className="mt-3 text-lg text-neutral-300 md:text-xl">{profile.role}</p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-neutral-400">
+          <p className="mt-3 text-lg text-panda-cream md:text-xl">{profile.role}</p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-panda-gray">
             {profile.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -75,7 +75,7 @@ export default function Hero({ profile }: HeroProps) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="打开 GitHub"
-                className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
+                className="rounded-full border border-panda-charcoal p-2.5 text-panda-cream transition hover:border-panda-white hover:text-panda-white"
               >
                 <Github size={20} />
               </a>
@@ -83,13 +83,13 @@ export default function Hero({ profile }: HeroProps) {
             <a
               href={`mailto:${profile.email}`}
               aria-label="发送邮件"
-              className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
+              className="rounded-full border border-panda-charcoal p-2.5 text-panda-cream transition hover:border-panda-white hover:text-panda-white"
             >
               <Mail size={20} />
             </a>
             {profile.socials?.wechat ? (
               <span
-                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-600 px-3 py-2 text-sm text-neutral-300"
+                className="inline-flex items-center gap-1.5 rounded-full border border-panda-charcoal px-3 py-2 text-sm text-panda-cream"
                 title={`微信：${profile.socials.wechat}`}
               >
                 <MessageCircle size={18} />
@@ -100,7 +100,7 @@ export default function Hero({ profile }: HeroProps) {
               <a
                 href={`tel:${profile.socials.phone.replace(/\s/g, "")}`}
                 aria-label="拨打电话"
-                className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
+                className="rounded-full border border-panda-charcoal p-2.5 text-panda-cream transition hover:border-panda-white hover:text-panda-white"
               >
                 <Phone size={20} />
               </a>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Mail, MessageCircle, Phone } from "lucide-react";
 import type { Profile } from "../data/types";
-import { cardOnLight } from "../utils/theme";
+import { cardOnLight, sectionLight } from "../utils/theme";
 import SectionHeading from "./SectionHeading";
 
 interface ContactProps {
@@ -73,7 +73,7 @@ export default function Contact({ profile }: ContactProps) {
   return (
     <motion.section
       id="contact"
-      className="scroll-mt-24 border-t border-neutral-300 bg-neutral-100 py-20 text-neutral-900 md:py-24"
+      className={`scroll-mt-24 border-t py-20 md:py-24 ${sectionLight}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -90,12 +90,12 @@ export default function Contact({ profile }: ContactProps) {
             const Icon = entry.icon;
             const content = (
               <>
-                <Icon size={20} className="shrink-0 text-neutral-700" />
+                <Icon size={20} className="shrink-0 text-panda-black/70" />
                 <div className="min-w-0">
-                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs font-medium uppercase tracking-wide text-panda-black/50">
                     {entry.label}
                   </p>
-                  <p className="truncate text-sm font-medium text-neutral-900">
+                  <p className="truncate text-sm font-medium text-panda-black">
                     {entry.display}
                   </p>
                 </div>
@@ -110,7 +110,7 @@ export default function Contact({ profile }: ContactProps) {
                     {...(entry.external
                       ? { target: "_blank", rel: "noreferrer" }
                       : {})}
-                    className={`flex min-h-[72px] items-center gap-3 px-5 py-4 transition hover:border-neutral-900 ${cardOnLight}`}
+                    className={`flex min-h-[72px] items-center gap-3 px-5 py-4 transition hover:border-panda-black ${cardOnLight}`}
                   >
                     {content}
                   </a>

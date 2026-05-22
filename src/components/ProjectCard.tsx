@@ -18,7 +18,7 @@ export default function ProjectCard({
   return (
     <article
       className={`flex h-full flex-col p-6 transition hover:-translate-y-1 ${card} ${
-        isLight ? "hover:border-neutral-900" : "hover:border-neutral-500"
+        isLight ? "hover:border-panda-black" : "hover:border-panda-gray"
       }`}
     >
       {imageSrc ? (
@@ -29,13 +29,13 @@ export default function ProjectCard({
         />
       ) : null}
       <h3
-        className={`text-lg font-semibold ${isLight ? "text-neutral-900" : "text-white"}`}
+        className={`text-lg font-semibold ${isLight ? "text-panda-black" : "text-panda-white"}`}
       >
         {project.title}
       </h3>
       <p
         className={`mt-2 flex-1 text-sm leading-relaxed ${
-          isLight ? "text-neutral-600" : "text-neutral-400"
+          isLight ? "text-panda-black/70" : "text-panda-gray"
         }`}
       >
         {project.description}
@@ -47,8 +47,8 @@ export default function ProjectCard({
               key={t}
               className={`rounded-md px-2 py-1 text-xs ${
                 isLight
-                  ? "bg-neutral-200 text-neutral-800"
-                  : "bg-neutral-800 text-neutral-200"
+                  ? "bg-panda-cream text-panda-black"
+                  : "bg-panda-charcoal text-panda-cream"
               }`}
             >
               {t}
@@ -64,8 +64,8 @@ export default function ProjectCard({
             rel="noreferrer"
             className={
               isLight
-                ? "rounded-full bg-black px-4 py-2 text-sm text-white transition hover:bg-neutral-800"
-                : "rounded-full bg-white px-4 py-2 text-sm text-black transition hover:bg-neutral-200"
+                ? "rounded-full bg-panda-black px-4 py-2 text-sm text-panda-white transition hover:bg-panda-charcoal"
+                : "rounded-full bg-panda-white px-4 py-2 text-sm text-panda-black transition hover:bg-panda-cream"
             }
           >
             预览
@@ -78,8 +78,8 @@ export default function ProjectCard({
             rel="noreferrer"
             className={`rounded-full border px-4 py-2 text-sm transition ${
               isLight
-                ? "border-neutral-400 text-neutral-800 hover:border-neutral-900"
-                : "border-neutral-600 text-neutral-200 hover:border-white"
+                ? "border-panda-gray text-panda-black hover:border-panda-black"
+                : "border-panda-charcoal text-panda-cream hover:border-panda-white"
             }`}
           >
             源码

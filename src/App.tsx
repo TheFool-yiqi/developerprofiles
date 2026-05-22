@@ -15,7 +15,7 @@ import {
 
 function App() {
   return (
-    <div className="min-h-screen text-neutral-100">
+    <div className="min-h-screen text-panda-white">
       <Navbar profile={profile} />
       <main>
         <Hero profile={profile} />

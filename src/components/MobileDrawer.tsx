@@ -20,14 +20,14 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
           <motion.button
             type="button"
             aria-label="关闭菜单"
-            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-panda-black/70 backdrop-blur-sm md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
           <motion.nav
-            className="fixed right-0 top-0 z-50 flex h-full w-[min(85vw,320px)] flex-col border-l border-neutral-700 bg-black p-6 text-neutral-100 md:hidden"
+            className="fixed right-0 top-0 z-50 flex h-full w-[min(85vw,320px)] flex-col border-l border-panda-charcoal bg-panda-black p-6 text-panda-white md:hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -35,11 +35,11 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
             aria-label="移动端导航"
           >
             <div className="mb-8 flex items-center justify-between">
-              <span className="text-sm font-medium text-neutral-400">菜单</span>
+              <span className="text-sm font-medium text-panda-gray">菜单</span>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-2 text-neutral-300 hover:bg-neutral-800"
+                className="rounded-lg p-2 text-panda-cream hover:bg-panda-charcoal"
                 aria-label="关闭菜单"
               >
                 <X size={22} />
@@ -51,7 +51,7 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
                   <a
                     href={item.href}
                     onClick={onClose}
-                    className="block rounded-xl px-4 py-3 text-base text-neutral-200 hover:bg-neutral-900 hover:text-white"
+                    className="block rounded-xl px-4 py-3 text-base text-panda-cream hover:bg-panda-charcoal hover:text-panda-white"
                   >
                     {item.label}
                   </a>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { Profile } from "../data/types";
+import { sectionDark } from "../utils/theme";
 import SectionHeading from "./SectionHeading";
 import SkillTag from "./SkillTag";
 
@@ -11,7 +12,7 @@ export default function Skills({ profile }: SkillsProps) {
   return (
     <motion.section
       id="skills"
-      className="scroll-mt-24 border-b border-neutral-800 bg-black py-20 text-neutral-100 md:py-24"
+      className={`scroll-mt-24 border-b py-20 md:py-24 ${sectionDark}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

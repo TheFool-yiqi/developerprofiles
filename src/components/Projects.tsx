@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { Profile } from "../data/types";
+import { sectionLight } from "../utils/theme";
 import SectionHeading from "./SectionHeading";
 import ProjectCard from "./ProjectCard";
 
@@ -13,7 +14,7 @@ export default function Projects({ profile }: ProjectsProps) {
   return (
     <motion.section
       id="projects"
-      className="scroll-mt-24 border-y border-neutral-300 bg-neutral-100 py-20 text-neutral-900 md:py-24"
+      className={`scroll-mt-24 border-y py-20 md:py-24 ${sectionLight}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

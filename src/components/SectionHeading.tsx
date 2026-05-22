@@ -15,7 +15,7 @@ export default function SectionHeading({
     <div className="mb-10 md:mb-12">
       <h2
         className={`text-2xl font-semibold tracking-tight md:text-3xl ${
-          isLight ? "text-neutral-900" : "text-white"
+          isLight ? "text-panda-black" : "text-panda-white"
         }`}
       >
         {title}
@@ -23,7 +23,7 @@ export default function SectionHeading({
       {subtitle ? (
         <p
           className={`mt-2 max-w-2xl ${
-            isLight ? "text-neutral-600" : "text-neutral-400"
+            isLight ? "text-panda-black/60" : "text-panda-gray"
           }`}
         >
           {subtitle}
