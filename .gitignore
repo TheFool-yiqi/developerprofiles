@@ -1,27 +1,24 @@
-# Environment and secrets
-.env
-.env.*
-!.env.example
-
-# Cursor — local agent artifacts (Spec Kit security notice)
-# Ignore everything under .cursor/ except shared project config
-.cursor/*
-!.cursor/skills/
-!.cursor/skills/**
-!.cursor/rules/
-!.cursor/rules/**
-
-# Spec Kit extension local overrides
-.specify/extensions/.cache/
-.specify/extensions/.backup/
-.specify/extensions/*/local-config.yml
-
-# OS and editor
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-
 # Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
