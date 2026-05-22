@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+开发地址一般为：**http://127.0.0.1:3000/developerprofiles/**（因 `base` 子路径，不要只打开根路径）。
+
+> 若 5173 报错 `EACCES`：Windows 可能保留了 5141–5240 等端口段，本项目已改用 **3000** 端口。
+
 ## 替换个人资料
 
 编辑 [`src/data/profile.ts`](src/data/profile.ts)。可选静态资源：
