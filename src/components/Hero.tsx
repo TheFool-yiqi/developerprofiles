@@ -31,7 +31,7 @@ export default function Hero({ profile }: HeroProps) {
             <img
               src={avatarSrc}
               alt={`${profile.name} 的头像`}
-              className="h-36 w-36 rounded-full border-2 border-panda-gray object-cover md:h-44 md:w-44"
+              className="h-36 w-36 rounded-full border-2 border-panda-gray object-cover object-[center_20%] md:h-44 md:w-44"
             />
           ) : (
             <div
