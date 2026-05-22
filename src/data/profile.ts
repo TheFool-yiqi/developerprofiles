@@ -1,4 +1,5 @@
 import type { Profile } from "./types";
+import { studentDdlUrl } from "../config/projectUrls";
 
 export const profile: Profile = {
   name: "刁雪猛",
@@ -33,6 +34,21 @@ export const profile: Profile = {
         "基于 React、TypeScript 与 Tailwind CSS 构建的响应式个人作品集站点，用于展示 Agent 应用开发相关技能、项目与教育背景。",
       tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
       repo: "https://github.com/TheFool-yiqi/developerprofiles",
+    },
+    {
+      title: "学生 DDL 助手（student_ddl）",
+      description:
+        "学生截止日期管理 MVP：录入 DDL、自动风险判断、按类型拆解子任务、今日 Top 3 推荐、多维筛选与学习数据统计，数据持久化于浏览器 localStorage。",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Vitest",
+        "date-fns",
+      ],
+      link: studentDdlUrl,
+      repo: "https://github.com/TheFool-yiqi/student_ddl",
     },
   ],
   experience: [

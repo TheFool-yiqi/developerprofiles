@@ -91,9 +91,20 @@ tcb app deploy --framework vite -e <你的-envId>
 
 ---
 
-## 四、验收清单
+## 四、挂载 student_ddl（作品集第二个项目）
+
+作品集「项目」区第二个卡片的 **预览** 默认跳转 `/student-ddl/`。需将 [student_ddl](https://github.com/TheFool-yiqi/student_ddl) 用 `npm run build:portfolio` 构建后，部署到**同一 CloudBase 环境**：
+
+```bash
+tcb hosting deploy ./dist /student-ddl -e <你的-envId>
+```
+
+详细联调与本地双端口说明见 [PROJECT-LINKS.md](./PROJECT-LINKS.md)。
+
+## 五、验收清单
 
 - [ ] 浏览器打开 Webify 域名，首屏显示「刁雪猛」与头像
+- [ ] 项目区第二个卡片「预览」可打开 student_ddl
 - [ ] 手机 4G 访问速度正常
 - [ ] `avatar.png`、CSS、JS 无 404（F12 网络面板）
 - [ ] 导航锚点、移动抽屉正常
@@ -101,7 +112,7 @@ tcb app deploy --framework vite -e <你的-envId>
 
 ---
 
-## 五、常见问题
+## 六、常见问题
 
 **Q：构建成功但部署报 `envId` 无效？**  
 打开 `cloudbaserc.json`，将 `envId` 改为控制台里你的 CloudBase 环境 ID（不能为空字符串）。
