@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Mail, MessageCircle, Phone } from "lucide-react";
 import type { Profile } from "../data/types";
 import { hasProjects } from "../utils/sectionVisibility";
 import { publicUrl } from "../utils/publicUrl";
+import { btnPrimary, btnSecondaryDark } from "../utils/theme";
 
 interface HeroProps {
   profile: Profile;
@@ -12,12 +13,12 @@ export default function Hero({ profile }: HeroProps) {
   const avatarSrc = profile.avatar ? publicUrl(profile.avatar) : undefined;
   const resumeSrc = profile.resumeUrl ? publicUrl(profile.resumeUrl) : undefined;
   const projectsHref = hasProjects(profile) ? "#projects" : "#about";
-  const initial = profile.name.trim().charAt(0) || "?";
+  const avatarFallback = profile.initials;
 
   return (
     <section
       id="home"
-      className="scroll-mt-24 border-b border-white/10 pb-20 pt-28 md:pb-28 md:pt-32"
+      className="scroll-mt-24 border-b border-neutral-800 bg-black pb-20 pt-28 text-neutral-100 md:pb-28 md:pt-32"
     >
       <motion.div
         className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[auto_1fr] md:items-center md:gap-14"
@@ -30,19 +31,19 @@ export default function Hero({ profile }: HeroProps) {
             <img
               src={avatarSrc}
               alt={`${profile.name} 的头像`}
-              className="h-36 w-36 rounded-full border-2 border-cyan-400/40 object-cover md:h-44 md:w-44"
+              className="h-36 w-36 rounded-full border-2 border-neutral-500 object-cover md:h-44 md:w-44"
             />
           ) : (
             <div
-              className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-dashed border-white/20 bg-white/5 text-4xl font-semibold text-cyan-300 md:h-44 md:w-44"
+              className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-neutral-600 bg-neutral-900 text-3xl font-bold tracking-widest text-white md:h-44 md:w-44"
               aria-hidden
             >
-              {initial}
+              {avatarFallback}
             </div>
           )}
         </div>
         <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-cyan-400">
+          <p className="text-sm font-medium uppercase tracking-widest text-neutral-400">
             个人资料
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-white md:text-5xl">
@@ -53,10 +54,7 @@ export default function Hero({ profile }: HeroProps) {
             {profile.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={projectsHref}
-              className="rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-medium text-neutral-950 transition hover:bg-cyan-300"
-            >
+            <a href={projectsHref} className={btnPrimary}>
               查看项目
             </a>
             {resumeSrc ? (
@@ -64,7 +62,7 @@ export default function Hero({ profile }: HeroProps) {
                 href={resumeSrc}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/20 px-5 py-2.5 text-sm text-white transition hover:border-cyan-400/50 hover:text-cyan-300"
+                className={btnSecondaryDark}
               >
                 下载简历
               </a>
@@ -77,29 +75,36 @@ export default function Hero({ profile }: HeroProps) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="打开 GitHub"
-                className="rounded-full border border-white/15 p-2.5 text-neutral-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+                className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
               >
                 <Github size={20} />
-              </a>
-            ) : null}
-            {profile.socials?.linkedin ? (
-              <a
-                href={profile.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="打开 LinkedIn"
-                className="rounded-full border border-white/15 p-2.5 text-neutral-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
-              >
-                <Linkedin size={20} />
               </a>
             ) : null}
             <a
               href={`mailto:${profile.email}`}
               aria-label="发送邮件"
-              className="rounded-full border border-white/15 p-2.5 text-neutral-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+              className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
             >
               <Mail size={20} />
             </a>
+            {profile.socials?.wechat ? (
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-600 px-3 py-2 text-sm text-neutral-300"
+                title={`微信：${profile.socials.wechat}`}
+              >
+                <MessageCircle size={18} />
+                微信
+              </span>
+            ) : null}
+            {profile.socials?.phone ? (
+              <a
+                href={`tel:${profile.socials.phone.replace(/\s/g, "")}`}
+                aria-label="拨打电话"
+                className="rounded-full border border-neutral-600 p-2.5 text-neutral-300 transition hover:border-white hover:text-white"
+              >
+                <Phone size={20} />
+              </a>
+            ) : null}
           </div>
         </div>
       </motion.div>

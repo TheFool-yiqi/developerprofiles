@@ -20,14 +20,14 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
           <motion.button
             type="button"
             aria-label="关闭菜单"
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
           <motion.nav
-            className="fixed right-0 top-0 z-50 flex h-full w-[min(85vw,320px)] flex-col border-l border-white/10 bg-neutral-950 p-6 md:hidden"
+            className="fixed right-0 top-0 z-50 flex h-full w-[min(85vw,320px)] flex-col border-l border-neutral-700 bg-black p-6 text-neutral-100 md:hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -39,7 +39,7 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-2 text-neutral-300 hover:bg-white/10"
+                className="rounded-lg p-2 text-neutral-300 hover:bg-neutral-800"
                 aria-label="关闭菜单"
               >
                 <X size={22} />
@@ -51,7 +51,7 @@ export default function MobileDrawer({ open, items, onClose }: MobileDrawerProps
                   <a
                     href={item.href}
                     onClick={onClose}
-                    className="block rounded-xl px-4 py-3 text-base text-neutral-200 hover:bg-white/10 hover:text-white"
+                    className="block rounded-xl px-4 py-3 text-base text-neutral-200 hover:bg-neutral-900 hover:text-white"
                   >
                     {item.label}
                   </a>

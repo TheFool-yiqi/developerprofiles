@@ -14,7 +14,7 @@ export default function Experience({ profile }: ExperienceProps) {
   return (
     <motion.section
       id="experience"
-      className="scroll-mt-24 py-20 md:py-24"
+      className="scroll-mt-24 border-b border-neutral-800 bg-black py-20 text-neutral-100 md:py-24"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -24,6 +24,7 @@ export default function Experience({ profile }: ExperienceProps) {
         <SectionHeading
           title="经历"
           subtitle="工作、实习、教育与项目相关经历"
+          variant="dark"
         />
         <ul className="grid gap-6">
           {items.map((item) => (

@@ -2,8 +2,8 @@ export type ExperienceType = "work" | "internship" | "education" | "project";
 
 export interface SocialLinks {
   github?: string;
-  linkedin?: string;
-  website?: string;
+  wechat?: string;
+  phone?: string;
 }
 
 export interface Project {
@@ -25,7 +25,10 @@ export interface Experience {
 }
 
 export interface Profile {
+  /** 中文姓名（页面展示） */
   name: string;
+  /** 左上角品牌标识：姓名拼音首字母缩写，如 XMD */
+  initials: string;
   role: string;
   location?: string;
   email: string;

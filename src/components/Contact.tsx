@@ -1,77 +1,126 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Mail, MessageCircle, Phone } from "lucide-react";
 import type { Profile } from "../data/types";
+import { cardOnLight } from "../utils/theme";
 import SectionHeading from "./SectionHeading";
 
 interface ContactProps {
   profile: Profile;
 }
 
+type ContactEntry =
+  | {
+      key: string;
+      label: string;
+      display: string;
+      href: string;
+      external: boolean;
+      icon: typeof Github;
+    }
+  | {
+      key: string;
+      label: string;
+      display: string;
+      icon: typeof MessageCircle;
+      external?: never;
+      href?: never;
+    };
+
 export default function Contact({ profile }: ContactProps) {
-  const links = [
-    {
-      label: "邮箱",
-      href: `mailto:${profile.email}`,
-      icon: Mail,
+  const entries: ContactEntry[] = [];
+
+  if (profile.socials?.github) {
+    entries.push({
+      key: "github",
+      label: "GitHub",
+      display: profile.socials.github.replace(/^https?:\/\/(www\.)?github\.com\//i, "@"),
+      href: profile.socials.github,
+      external: true,
+      icon: Github,
+    });
+  }
+
+  entries.push({
+    key: "email",
+    label: "邮箱",
+    display: profile.email,
+    href: `mailto:${profile.email}`,
+    external: false,
+    icon: Mail,
+  });
+
+  if (profile.socials?.wechat) {
+    entries.push({
+      key: "wechat",
+      label: "微信",
+      display: profile.socials.wechat,
+      icon: MessageCircle,
+    });
+  }
+
+  if (profile.socials?.phone) {
+    const phone = profile.socials.phone.replace(/\s/g, "");
+    entries.push({
+      key: "phone",
+      label: "手机号",
+      display: profile.socials.phone,
+      href: `tel:${phone}`,
       external: false,
-    },
-    profile.socials?.github
-      ? {
-          label: "GitHub",
-          href: profile.socials.github,
-          icon: Github,
-          external: true,
-        }
-      : null,
-    profile.socials?.linkedin
-      ? {
-          label: "LinkedIn",
-          href: profile.socials.linkedin,
-          icon: Linkedin,
-          external: true,
-        }
-      : null,
-    profile.socials?.website
-      ? {
-          label: "个人网站",
-          href: profile.socials.website,
-          icon: ExternalLink,
-          external: true,
-        }
-      : null,
-  ].filter(Boolean) as {
-    label: string;
-    href: string;
-    icon: typeof Mail;
-    external: boolean;
-  }[];
+      icon: Phone,
+    });
+  }
 
   return (
     <motion.section
       id="contact"
-      className="scroll-mt-24 py-20 md:py-24"
+      className="scroll-mt-24 border-t border-neutral-300 bg-neutral-100 py-20 text-neutral-900 md:py-24"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.45 }}
     >
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading title="联系" subtitle="通过以下方式与我取得联系" />
+        <SectionHeading
+          title="联系"
+          subtitle="GitHub、邮箱、微信与手机号"
+          variant="light"
+        />
         <ul className="grid gap-4 sm:grid-cols-2">
-          {links.map((link) => {
-            const Icon = link.icon;
+          {entries.map((entry) => {
+            const Icon = entry.icon;
+            const content = (
+              <>
+                <Icon size={20} className="shrink-0 text-neutral-700" />
+                <div className="min-w-0">
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    {entry.label}
+                  </p>
+                  <p className="truncate text-sm font-medium text-neutral-900">
+                    {entry.display}
+                  </p>
+                </div>
+              </>
+            );
+
             return (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  {...(link.external
-                    ? { target: "_blank", rel: "noreferrer" }
-                    : {})}
-                  className="flex min-h-[56px] items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-neutral-200 transition hover:border-cyan-400/30 hover:text-white"
-                >
-                  <Icon size={20} className="text-cyan-400" />
-                  <span>{link.label}</span>
-                </a>
+              <li key={entry.key}>
+                {"href" in entry && entry.href ? (
+                  <a
+                    href={entry.href}
+                    {...(entry.external
+                      ? { target: "_blank", rel: "noreferrer" }
+                      : {})}
+                    className={`flex min-h-[72px] items-center gap-3 px-5 py-4 transition hover:border-neutral-900 ${cardOnLight}`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div
+                    className={`flex min-h-[72px] items-center gap-3 px-5 py-4 ${cardOnLight}`}
+                  >
+                    {content}
+                  </div>
+                )}
               </li>
             );
           })}

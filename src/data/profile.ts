@@ -2,6 +2,7 @@ import type { Profile } from "./types";
 
 export const profile: Profile = {
   name: "你的名字",
+  initials: "NDM",
   role: "前端开发工程师",
   location: "城市，国家",
   email: "your@email.com",
@@ -54,6 +55,7 @@ export const profile: Profile = {
   ],
   socials: {
     github: "https://github.com/TheFool-yiqi",
-    linkedin: "https://linkedin.com/in/yourname",
+    wechat: "your-wechat-id",
+    phone: "13800000000",
   },
 };
