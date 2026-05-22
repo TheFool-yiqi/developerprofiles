@@ -23,7 +23,7 @@
 | 配置项 | 填写值 |
 |--------|--------|
 | 安装命令 | `npm install` |
-| 构建命令 | `npm run build:root` |
+| 构建命令 | `npm run build:site`（含 student_ddl 子应用） |
 | 输出目录 | `dist` |
 | Node 版本 | 18 或 20（日志里用 24 也可通过） |
 | 框架类型 | 选 **Vite** 或 React（自定义构建命令时影响小） |
@@ -91,15 +91,13 @@ tcb app deploy --framework vite -e <你的-envId>
 
 ---
 
-## 四、挂载 student_ddl（作品集第二个项目）
+## 四、student_ddl 预览（已并入构建）
 
-作品集「项目」区第二个卡片的 **预览** 默认跳转 `/student-ddl/`。需将 [student_ddl](https://github.com/TheFool-yiqi/student_ddl) 用 `npm run build:portfolio` 构建后，部署到**同一 CloudBase 环境**：
+构建命令使用 **`npm run build:site`** 时，会把 [student_ddl](https://github.com/TheFool-yiqi/student_ddl) 产出写入 `dist/student-ddl/`，与作品集一并部署到 `/`，第二个项目的 **预览** 即可访问。
 
-```bash
-tcb hosting deploy ./dist /student-ddl -e <你的-envId>
-```
+环境变量建议增加：`VITE_STUDENT_DDL_URL=/student-ddl/`（`cloudbaserc.json` 已包含）。
 
-详细联调与本地双端口说明见 [PROJECT-LINKS.md](./PROJECT-LINKS.md)。
+本地联调见 [PROJECT-LINKS.md](./PROJECT-LINKS.md)。
 
 ## 五、验收清单
 

@@ -5,11 +5,12 @@
     "serviceName": "developerprofiles",
     "framework": "vite",
     "installCommand": "npm install",
-    "buildCommand": "npm run build:root",
+    "buildCommand": "npm run build:site",
     "outputDir": "dist",
     "deployPath": "/",
     "envVariables": {
-      "VITE_BASE": "/"
+      "VITE_BASE": "/",
+      "VITE_STUDENT_DDL_URL": "/student-ddl/"
     }
   }
 }
