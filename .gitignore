@@ -14,6 +14,7 @@ dist
 student_ddl/
 dist-ssr
 *.local
+*.zip
 
 # Editor directories and files
 .vscode/*
