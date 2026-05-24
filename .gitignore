@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 .tmp
+# 子项目应在 sibling 目录（../student_ddl），勿复制到本仓库
+student_ddl/
 dist-ssr
 *.local
 
