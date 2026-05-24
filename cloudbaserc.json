@@ -10,7 +10,8 @@
     "deployPath": "/",
     "envVariables": {
       "VITE_BASE": "/",
-      "VITE_STUDENT_DDL_URL": "/student-ddl/"
+      "VITE_STUDENT_DDL_URL": "/student-ddl/",
+      "VITE_STARTRAIL_NOTES_URL": "/startrail-notes/"
     }
   }
 }

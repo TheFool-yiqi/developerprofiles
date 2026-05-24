@@ -1,6 +1,6 @@
-# 作品集 ↔ student_ddl 联动
+# 作品集 ↔ 子项目联动
 
-个人简历站（本仓库）「项目」区第二个卡片指向 **学生 DDL 助手**。
+个人简历站「项目」区包含三个作品，其中 **student_ddl**、**startrail_notes** 通过同域子路径预览。
 
 ## 本地联调
 
@@ -18,7 +18,19 @@ cd ../student_ddl
 npm run dev
 ```
 
-浏览器打开作品集 → 项目 → 第二个卡片 **预览**，应跳转到 `http://127.0.0.1:3001/`。
+终端 3（星辉笔记，端口 3002）：
+
+```bash
+cd ../startrail_notes
+npm run dev
+```
+
+浏览器打开作品集 → 项目 → 各卡片 **预览**：
+
+| 项目 | 默认本地地址 |
+|------|----------------|
+| 学生 DDL 助手 | `http://127.0.0.1:3001/` |
+| 星辉笔记 | `http://127.0.0.1:3002/` |
 
 ## 国内线上（Webify 推荐：一次构建、一次部署）
 
@@ -32,13 +44,33 @@ npm run build:site
 
 - `dist/` — 作品集（根路径 `/`）
 - `dist/student-ddl/` — DDL 助手（`/student-ddl/`）
+- `dist/startrail-notes/` — 星辉笔记（`/startrail-notes/`）
 
-Webify 将 `dist` 部署到 `/` 后，「预览」即可用，**无需单独部署第二个仓库**。
+Webify 将 `dist` 部署到 `/` 后，「预览」即可用，**无需单独部署子项目仓库**。
 
 控制台构建命令请设为 **`npm run build:site`**（与 `cloudbaserc.json` 一致），不要只用 `build:root`。
 
-若 DDL 使用**独立域名**，在 Webify 环境变量把 `VITE_STUDENT_DDL_URL` 改为完整 URL，并改回 `npm run build:root` 构建。
+环境变量（`cloudbaserc.json` 已包含）：
 
-## student_ddl 返回作品集
+| 变量 | 值 |
+|------|-----|
+| `VITE_BASE` | `/` |
+| `VITE_STUDENT_DDL_URL` | `/student-ddl/` |
+| `VITE_STARTRAIL_NOTES_URL` | `/startrail-notes/` |
 
-student_ddl 页头提供「返回作品集」链接，地址由 `VITE_PORTFOLIO_URL` 配置（默认同域 `/`）。
+若子项目使用**独立域名**，在 Webify 环境变量改为完整 URL，并改回 `npm run build:root` 构建作品集。
+
+## 子项目返回作品集
+
+- **student_ddl** 页头「返回作品集」：`VITE_PORTFOLIO_URL`（默认同域 `/`）
+- **startrail_notes** 页头「返回作品集」：同上
+
+## 项目封面图
+
+封面位于 `public/projects/`：
+
+- `developerprofiles-cover.png`
+- `student-ddl-cover.png`
+- `startrail-notes-cover.png`
+
+在 `src/data/profile.ts` 的 `image` 字段引用。

@@ -91,11 +91,19 @@ tcb app deploy --framework vite -e <你的-envId>
 
 ---
 
-## 四、student_ddl 预览（已并入构建）
+## 四、子项目预览（已并入构建）
 
-构建命令使用 **`npm run build:site`** 时，会把 [student_ddl](https://github.com/TheFool-yiqi/student_ddl) 产出写入 `dist/student-ddl/`，与作品集一并部署到 `/`，第二个项目的 **预览** 即可访问。
+构建命令使用 **`npm run build:site`** 时，会把子项目产出与作品集一并部署到 `/`：
 
-环境变量建议增加：`VITE_STUDENT_DDL_URL=/student-ddl/`（`cloudbaserc.json` 已包含）。
+| 子项目 | 路径 | 作品集卡片 |
+|--------|------|------------|
+| [student_ddl](https://github.com/TheFool-yiqi/student_ddl) | `/student-ddl/` | 第二个 |
+| [startrail_notes](https://github.com/TheFool-yiqi/startrail_notes) | `/startrail-notes/` | 第三个 |
+
+环境变量（`cloudbaserc.json` 已包含）：
+
+- `VITE_STUDENT_DDL_URL=/student-ddl/`
+- `VITE_STARTRAIL_NOTES_URL=/startrail-notes/`
 
 本地联调见 [PROJECT-LINKS.md](./PROJECT-LINKS.md)。
 
@@ -103,6 +111,7 @@ tcb app deploy --framework vite -e <你的-envId>
 
 - [ ] 浏览器打开 Webify 域名，首屏显示「刁雪猛」与头像
 - [ ] 项目区第二个卡片「预览」可打开 student_ddl
+- [ ] 项目区第三个卡片「预览」可打开 startrail_notes
 - [ ] 手机 4G 访问速度正常
 - [ ] `avatar.png`、CSS、JS 无 404（F12 网络面板）
 - [ ] 导航锚点、移动抽屉正常

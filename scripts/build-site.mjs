@@ -1,5 +1,5 @@
 /**
- * 构建作品集 + 将 student_ddl 产出合并到 dist/student-ddl/（Webify 单次部署即可访问预览）
+ * 构建作品集 + 将 student_ddl、startrail_notes 产出合并到 dist 子路径（Webify 单次部署）
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -7,12 +7,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const ddlLocal = path.resolve(root, "../student_ddl");
-const ddlTmp = path.join(root, ".tmp", "student_ddl");
-const ddlRepo =
-  process.env.STUDENT_DDL_REPO ??
-  "https://github.com/TheFool-yiqi/student_ddl.git";
-const ddlBranch = process.env.STUDENT_DDL_BRANCH ?? "main";
 
 function run(cmd, cwd) {
   execSync(cmd, { cwd, stdio: "inherit", env: process.env });
@@ -28,33 +22,74 @@ function copyDir(src, dest) {
   }
 }
 
-console.log("[build-site] 1/3 构建作品集 (build:root)…");
+function resolveProjectDir(localDir, tmpDir, repo, branch, markerPath) {
+  if (fs.existsSync(markerPath)) {
+    console.log(`[build-site] 使用本地 ${localDir} …`);
+    return localDir;
+  }
+  console.log(`[build-site] 克隆 ${path.basename(localDir)} (${branch})…`);
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+  fs.mkdirSync(path.dirname(tmpDir), { recursive: true });
+  run(`git clone --depth 1 -b ${branch} ${repo} ${tmpDir}`, root);
+  return tmpDir;
+}
+
+function buildSubApp(projectDir, buildScript) {
+  if (fs.existsSync(path.join(projectDir, "package-lock.json"))) {
+    run("npm ci", projectDir);
+  } else {
+    run("npm install", projectDir);
+  }
+  run(`npm run ${buildScript}`, projectDir);
+}
+
+console.log("[build-site] 1/5 构建作品集 (build:root)…");
 run("npm run build:root", root);
 
-let ddlDir = ddlLocal;
-if (!fs.existsSync(path.join(ddlLocal, "src", "main.tsx"))) {
-  console.log(
-    `[build-site] 2/3 克隆 student_ddl (${ddlBranch})…`,
-  );
-  fs.rmSync(ddlTmp, { recursive: true, force: true });
-  fs.mkdirSync(path.dirname(ddlTmp), { recursive: true });
-  run(`git clone --depth 1 -b ${ddlBranch} ${ddlRepo} ${ddlTmp}`, root);
-  ddlDir = ddlTmp;
-} else {
-  console.log("[build-site] 2/3 使用本地 ../student_ddl …");
-}
+const ddlLocal = path.resolve(root, "../student_ddl");
+const ddlTmp = path.join(root, ".tmp", "student_ddl");
+const ddlRepo =
+  process.env.STUDENT_DDL_REPO ??
+  "https://github.com/TheFool-yiqi/student_ddl.git";
+const ddlBranch = process.env.STUDENT_DDL_BRANCH ?? "main";
 
-console.log("[build-site] 3/3 构建 student_ddl (build:portfolio)…");
-if (fs.existsSync(path.join(ddlDir, "package-lock.json"))) {
-  run("npm ci", ddlDir);
-} else {
-  run("npm install", ddlDir);
-}
-run("npm run build:portfolio", ddlDir);
+const ddlDir = resolveProjectDir(
+  ddlLocal,
+  ddlTmp,
+  ddlRepo,
+  ddlBranch,
+  path.join(ddlLocal, "src", "main.tsx"),
+);
 
-const ddlDist = path.join(ddlDir, "dist");
-const target = path.join(root, "dist", "student-ddl");
-fs.rmSync(target, { recursive: true, force: true });
-copyDir(ddlDist, target);
+console.log("[build-site] 2/5 构建 student_ddl (build:portfolio)…");
+buildSubApp(ddlDir, "build:portfolio");
+copyDir(
+  path.join(ddlDir, "dist"),
+  path.join(root, "dist", "student-ddl"),
+);
 
-console.log("[build-site] 完成 → dist/ 与 dist/student-ddl/");
+const notesLocal = path.resolve(root, "../startrail_notes");
+const notesTmp = path.join(root, ".tmp", "startrail_notes");
+const notesRepo =
+  process.env.STARTRAIL_NOTES_REPO ??
+  "https://github.com/TheFool-yiqi/startrail_notes.git";
+const notesBranch = process.env.STARTRAIL_NOTES_BRANCH ?? "main";
+
+const notesDir = resolveProjectDir(
+  notesLocal,
+  notesTmp,
+  notesRepo,
+  notesBranch,
+  path.join(notesLocal, "src", "main.tsx"),
+);
+
+console.log("[build-site] 3/5 构建 startrail_notes (build:portfolio)…");
+buildSubApp(notesDir, "build:portfolio");
+copyDir(
+  path.join(notesDir, "dist"),
+  path.join(root, "dist", "startrail-notes"),
+);
+
+console.log(
+  "[build-site] 完成 → dist/、dist/student-ddl/、dist/startrail-notes/",
+);

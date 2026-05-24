@@ -1,5 +1,5 @@
 import type { Profile } from "./types";
-import { studentDdlUrl } from "../config/projectUrls";
+import { startrailNotesUrl, studentDdlUrl } from "../config/projectUrls";
 
 export const profile: Profile = {
   name: "刁雪猛",
@@ -33,6 +33,7 @@ export const profile: Profile = {
       description:
         "基于 React、TypeScript 与 Tailwind CSS 构建的响应式个人作品集站点，用于展示 Agent 应用开发相关技能、项目与教育背景。",
       tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
+      image: "/projects/developerprofiles-cover.png",
       repo: "https://github.com/TheFool-yiqi/developerprofiles",
     },
     {
@@ -47,8 +48,26 @@ export const profile: Profile = {
         "Vitest",
         "date-fns",
       ],
+      image: "/projects/student-ddl-cover.png",
       link: studentDdlUrl,
       repo: "https://github.com/TheFool-yiqi/student_ddl",
+    },
+    {
+      title: "星辉笔记（Startrail Notes）",
+      description:
+        "面向学习场景的纯前端 Markdown 笔记应用：组件化拆分编辑/预览链路、GFM 渲染与多语言代码高亮，LocalStorage 持久化与导入导出闭环，适合作为 Agent 辅助开发的前端工程样例。",
+      tech: [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "react-markdown",
+        "LocalStorage",
+        "Vite",
+        "Vitest",
+      ],
+      image: "/projects/startrail-notes-cover.png",
+      link: startrailNotesUrl,
+      repo: "https://github.com/TheFool-yiqi/startrail_notes",
     },
   ],
   experience: [
