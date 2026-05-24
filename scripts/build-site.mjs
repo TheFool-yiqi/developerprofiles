@@ -1,5 +1,5 @@
 /**
- * 构建作品集 + 将 student_ddl、startrail_notes 产出合并到 dist 子路径（Webify 单次部署）
+ * 构建作品集 + 将 student_ddl、startrail_notes、traveler_weather 产出合并到 dist 子路径（Webify 单次部署）
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -90,6 +90,29 @@ copyDir(
   path.join(root, "dist", "startrail-notes"),
 );
 
+const weatherLocal = path.resolve(root, "../traveler_weather");
+const weatherTmp = path.join(root, ".tmp", "traveler_weather");
+const weatherRepo =
+  process.env.TRAVELER_WEATHER_REPO ??
+  "https://github.com/TheFool-yiqi/traveler_weather.git";
+const weatherBranch = process.env.TRAVELER_WEATHER_BRANCH ?? "main";
+
+const weatherDir = resolveProjectDir(
+  weatherLocal,
+  weatherTmp,
+  weatherRepo,
+  weatherBranch,
+  path.join(weatherLocal, "src", "main.tsx"),
+);
+
+console.log("[build-site] 4/5 构建 traveler_weather (build:portfolio)…");
+buildSubApp(weatherDir, "build:portfolio");
+copyDir(
+  path.join(weatherDir, "dist"),
+  path.join(root, "dist", "traveler-weather"),
+);
+
+console.log("[build-site] 5/5 合并完成");
 console.log(
-  "[build-site] 完成 → dist/、dist/student-ddl/、dist/startrail-notes/",
+  "[build-site] 完成 → dist/、dist/student-ddl/、dist/startrail-notes/、dist/traveler-weather/",
 );

@@ -1,5 +1,5 @@
 import type { Profile } from "./types";
-import { startrailNotesUrl, studentDdlUrl } from "../config/projectUrls";
+import { startrailNotesUrl, studentDdlUrl, travelerWeatherUrl } from "../config/projectUrls";
 
 export const profile: Profile = {
   name: "刁雪猛",
@@ -68,6 +68,24 @@ export const profile: Profile = {
       image: "/projects/startrail-notes-cover.png",
       link: startrailNotesUrl,
       repo: "https://github.com/TheFool-yiqi/startrail_notes",
+    },
+    {
+      title: "旅行者校园天气助手（Traveler Weather）",
+      description:
+        "面向学生场景的纯前端天气应用：Open-Meteo 实时/小时/7 日预报，浏览器定位与收藏锚点，将 WMO 天气码映射为原创「元素状态」并生成通勤/运动/自习等校园行动建议，LocalStorage 持久化，作为 Agent 辅助开发的前端数据流样例。",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Zustand",
+        "Open-Meteo",
+        "Framer Motion",
+        "Vitest",
+      ],
+      image: "/projects/traveler-weather-cover.png",
+      link: travelerWeatherUrl,
+      repo: "https://github.com/TheFool-yiqi/traveler_weather",
     },
   ],
   experience: [

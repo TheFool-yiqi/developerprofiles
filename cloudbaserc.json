@@ -11,7 +11,8 @@
     "envVariables": {
       "VITE_BASE": "/",
       "VITE_STUDENT_DDL_URL": "/student-ddl/",
-      "VITE_STARTRAIL_NOTES_URL": "/startrail-notes/"
+      "VITE_STARTRAIL_NOTES_URL": "/startrail-notes/",
+      "VITE_TRAVELER_WEATHER_URL": "/traveler-weather/"
     }
   }
 }

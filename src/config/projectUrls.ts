@@ -5,3 +5,7 @@ export const studentDdlUrl =
 /** 星辉笔记在线演示地址（见各 .env.* 中 VITE_STARTRAIL_NOTES_URL） */
 export const startrailNotesUrl =
   import.meta.env.VITE_STARTRAIL_NOTES_URL ?? "http://127.0.0.1:3002/";
+
+/** 旅行者校园天气助手在线演示地址（见各 .env.* 中 VITE_TRAVELER_WEATHER_URL） */
+export const travelerWeatherUrl =
+  import.meta.env.VITE_TRAVELER_WEATHER_URL ?? "http://127.0.0.1:3003/";
