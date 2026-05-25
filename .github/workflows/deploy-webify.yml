@@ -9,6 +9,11 @@ concurrency:
   group: deploy-webify
   cancel-in-progress: true
 
+env:
+  TCB_ENV_ID: cursor-d2gitn6fg62fef67d
+  COS_BUCKET: fc25-static-cursor-d2gitn6fg62fef67d-1435930849
+  COS_REGION: ap-shanghai
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -28,14 +33,24 @@ jobs:
       - name: Build site with sub-apps
         run: npm run build:site
 
-      - name: Install CloudBase CLI
-        run: npm install -g @cloudbase/cli
+      - name: Install COS CLI
+        run: |
+          curl -fsSL "https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux-amd64" -o coscli
+          chmod +x coscli
+          sudo mv coscli /usr/local/bin/coscli
 
-      - name: Login CloudBase (API key)
+      - name: Configure COS credentials
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        run: tcb login --apiKeyId "$TENCENT_SECRET_ID" --apiKey "$TENCENT_SECRET_KEY"
+        run: |
+          coscli config add \
+            --bucket "${{ env.COS_BUCKET }}" \
+            --region "${{ env.COS_REGION }}" \
+            --secret-id "${TENCENT_SECRET_ID}" \
+            --secret-key "${TENCENT_SECRET_KEY}" \
+            --bucket-alias webify-deploy \
+            --force
 
-      - name: Deploy to static hosting
-        run: tcb hosting deploy ./dist / -e cursor-d2gitn6fg62fef67d
+      - name: Upload dist to static hosting bucket
+        run: coscli sync ./dist/ cos://webify-deploy/ -r --delete
