@@ -10,7 +10,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  TCB_ENV_ID: cursor-d2gitn6fg62fef67d
   COS_BUCKET: fc25-static-cursor-d2gitn6fg62fef67d-1435930849
   COS_REGION: ap-shanghai
 
@@ -33,23 +32,13 @@ jobs:
       - name: Build site with sub-apps
         run: npm run build:site
 
-      - name: Install COS CLI
-        run: |
-          curl -fsSL "https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux-amd64" -o coscli
-          chmod +x coscli
-          sudo mv coscli /usr/local/bin/coscli
-
-      - name: Configure COS credentials
-        env:
-          TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
-          TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        run: |
-          coscli config add \
-            -b "${{ env.COS_BUCKET }}" \
-            -r "${{ env.COS_REGION }}" \
-            -a webify-deploy \
-            --secret_id "${TENCENT_SECRET_ID}" \
-            --secret_key "${TENCENT_SECRET_KEY}"
+      - name: Setup COS CLI
+        uses: git9527/setup-coscli@v2
+        with:
+          region: ${{ env.COS_REGION }}
+          secret-id: ${{ secrets.TENCENT_SECRET_ID }}
+          secret-key: ${{ secrets.TENCENT_SECRET_KEY }}
+          bucket: ${{ env.COS_BUCKET }}
 
       - name: Upload dist to static hosting bucket
-        run: coscli sync ./dist/ cos://webify-deploy/ -r --delete
+        run: coscli sync ./dist/ cos://${{ env.COS_BUCKET }}/ -r
