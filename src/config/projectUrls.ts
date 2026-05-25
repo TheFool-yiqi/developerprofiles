@@ -9,3 +9,7 @@ export const startrailNotesUrl =
 /** 旅行者校园天气助手在线演示地址（见各 .env.* 中 VITE_TRAVELER_WEATHER_URL） */
 export const travelerWeatherUrl =
   import.meta.env.VITE_TRAVELER_WEATHER_URL ?? "http://127.0.0.1:3003/";
+
+/** 旅伴 AI 在线演示地址（见各 .env.* 中 VITE_TRAVELER_AI_URL） */
+export const travelerAiUrl =
+  import.meta.env.VITE_TRAVELER_AI_URL ?? "http://127.0.0.1:3004/";

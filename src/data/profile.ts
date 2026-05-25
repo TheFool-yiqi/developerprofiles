@@ -1,5 +1,10 @@
 import type { Profile } from "./types";
-import { startrailNotesUrl, studentDdlUrl, travelerWeatherUrl } from "../config/projectUrls";
+import {
+  startrailNotesUrl,
+  studentDdlUrl,
+  travelerAiUrl,
+  travelerWeatherUrl,
+} from "../config/projectUrls";
 
 export const profile: Profile = {
   name: "刁雪猛",
@@ -86,6 +91,24 @@ export const profile: Profile = {
       image: "/projects/traveler-weather-cover.png",
       link: travelerWeatherUrl,
       repo: "https://github.com/TheFool-yiqi/traveler_weather",
+    },
+    {
+      title: "旅伴 AI（Travel Companion AI）",
+      description:
+        "面向学生场景的幻想冒险风 AI 聊天助手：多会话与五种模式 Prompt、ReadableStream 流式输出与 AbortController 中断、GFM Markdown 与代码高亮，LocalStorage 持久化与收藏/导出闭环；Mock 与 /api/chat 代理分层，适合作为 LLM 应用前端工程样例。",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Zustand",
+        "react-router-dom",
+        "react-markdown",
+        "Vitest",
+      ],
+      image: "/projects/traveler-ai-cover.png",
+      link: travelerAiUrl,
+      repo: "https://github.com/TheFool-yiqi/traveler_ai",
     },
   ],
   experience: [

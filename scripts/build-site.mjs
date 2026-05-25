@@ -1,5 +1,5 @@
 /**
- * 构建作品集 + 将 student_ddl、startrail_notes、traveler_weather 产出合并到 dist 子路径（Webify 单次部署）
+ * 构建作品集 + 将 student_ddl、startrail_notes、traveler_weather、traveler_ai 产出合并到 dist 子路径（Webify 单次部署）
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -43,7 +43,7 @@ function buildSubApp(projectDir, buildScript) {
   run(`npm run ${buildScript}`, projectDir);
 }
 
-console.log("[build-site] 1/5 构建作品集 (build:root)…");
+console.log("[build-site] 1/6 构建作品集 (build:root)…");
 run("npm run build:root", root);
 
 const ddlLocal = path.resolve(root, "../student_ddl");
@@ -61,7 +61,7 @@ const ddlDir = resolveProjectDir(
   path.join(ddlLocal, "src", "main.tsx"),
 );
 
-console.log("[build-site] 2/5 构建 student_ddl (build:portfolio)…");
+console.log("[build-site] 2/6 构建 student_ddl (build:portfolio)…");
 buildSubApp(ddlDir, "build:portfolio");
 copyDir(
   path.join(ddlDir, "dist"),
@@ -83,7 +83,7 @@ const notesDir = resolveProjectDir(
   path.join(notesLocal, "src", "main.tsx"),
 );
 
-console.log("[build-site] 3/5 构建 startrail_notes (build:portfolio)…");
+console.log("[build-site] 3/6 构建 startrail_notes (build:portfolio)…");
 buildSubApp(notesDir, "build:portfolio");
 copyDir(
   path.join(notesDir, "dist"),
@@ -105,14 +105,33 @@ const weatherDir = resolveProjectDir(
   path.join(weatherLocal, "src", "main.tsx"),
 );
 
-console.log("[build-site] 4/5 构建 traveler_weather (build:portfolio)…");
+console.log("[build-site] 4/6 构建 traveler_weather (build:portfolio)…");
 buildSubApp(weatherDir, "build:portfolio");
 copyDir(
   path.join(weatherDir, "dist"),
   path.join(root, "dist", "traveler-weather"),
 );
 
-console.log("[build-site] 5/5 合并完成");
+const aiLocal = path.resolve(root, "../traveler_ai");
+const aiTmp = path.join(root, ".tmp", "traveler_ai");
+const aiRepo =
+  process.env.TRAVELER_AI_REPO ??
+  "https://github.com/TheFool-yiqi/traveler_ai.git";
+const aiBranch = process.env.TRAVELER_AI_BRANCH ?? "main";
+
+const aiDir = resolveProjectDir(
+  aiLocal,
+  aiTmp,
+  aiRepo,
+  aiBranch,
+  path.join(aiLocal, "src", "main.tsx"),
+);
+
+console.log("[build-site] 5/6 构建 traveler_ai (build:portfolio)…");
+buildSubApp(aiDir, "build:portfolio");
+copyDir(path.join(aiDir, "dist"), path.join(root, "dist", "traveler-ai"));
+
+console.log("[build-site] 6/6 合并完成");
 console.log(
-  "[build-site] 完成 → dist/、dist/student-ddl/、dist/startrail-notes/、dist/traveler-weather/",
+  "[build-site] 完成 → dist/、dist/student-ddl/、dist/startrail-notes/、dist/traveler-weather/、dist/traveler-ai/",
 );
