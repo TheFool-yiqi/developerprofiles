@@ -117,7 +117,7 @@ const aiTmp = path.join(root, ".tmp", "traveler_ai");
 const aiRepo =
   process.env.TRAVELER_AI_REPO ??
   "https://github.com/TheFool-yiqi/traveler_ai.git";
-const aiBranch = process.env.TRAVELER_AI_BRANCH ?? "main";
+const aiBranch = process.env.TRAVELER_AI_BRANCH ?? "master";
 
 const aiDir = resolveProjectDir(
   aiLocal,
