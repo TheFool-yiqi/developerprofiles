@@ -7,9 +7,9 @@
 | 层级 | 位置 |
 |------|------|
 | **代码托管** | GitHub（唯一源仓库） |
-| **站点部署** | **腾讯云 Webify**（国内节点） |
+| **站点部署** | **EdgeOne Pages**（国内边缘加速） |
 
-部署步骤：[docs/DEPLOY-TENCENT-WEBIFY.md](docs/DEPLOY-TENCENT-WEBIFY.md) · 总览：[docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)
+部署步骤：[docs/DEPLOY-EDGEONE-PAGES.md](docs/DEPLOY-EDGEONE-PAGES.md) · 总览：[docs/DEPLOY-CN.md](docs/DEPLOY-CN.md)
 
 ## 本地运行
 
@@ -35,8 +35,8 @@ npm run build          # GitHub Pages 子路径备用
 ## 部署流程（摘要）
 
 1. 在 GitHub 正常开发：`git push origin master`
-2. 按 [docs/DEPLOY-TENCENT-WEBIFY.md](docs/DEPLOY-TENCENT-WEBIFY.md) 在 **腾讯云 Webify** 导入本 GitHub 仓库并部署
-3. 对外分享 **Webify 分配的国内域名**，不要用 GitHub Pages 作为国内主链接
+2. 按 [docs/DEPLOY-EDGEONE-PAGES.md](docs/DEPLOY-EDGEONE-PAGES.md) 配置 **EdgeOne Pages**（GitHub Actions 或控制台 Git 导入）
+3. 对外分享 **EdgeOne 分配的域名**，不要用 GitHub Pages 作为国内主链接
 
 ## 文档
 

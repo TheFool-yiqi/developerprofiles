@@ -23,7 +23,7 @@ Pattern for project #N:
 # .env.development
 VITE_{UPPER_SNAKE}_URL=http://127.0.0.1:{port}/
 
-# .env.root / .env.gitee / cloudbaserc.json
+# .env.root / .env.gitee / edgeone.json
 VITE_{UPPER_SNAKE}_URL=/{kebab-path}/
 ```
 
@@ -89,7 +89,7 @@ developerprofiles/
   .env.development             # local preview URL
   .env.root                    # production subpath
   .env.gitee                   # if used
-  cloudbaserc.json             # Webify envVariables
+  edgeone.json                 # EdgeOne Pages 构建配置
   scripts/build-site.mjs       # clone + build + copy
 
 sub-repo/ (if embedded preview)
@@ -101,7 +101,7 @@ sub-repo/ (if embedded preview)
 
 ## Deployment (unchanged platform)
 
-- **Platform**: Tencent Cloud Webify (see `docs/DEPLOY-CN.md`, `docs/DEPLOY-TENCENT-WEBIFY.md`)
+- **Platform**: EdgeOne Pages (see `docs/DEPLOY-CN.md`, `docs/DEPLOY-EDGEONE-PAGES.md`)
 - **Build command**: `npm run build:site` (not `build:root` when bundling sub-apps)
 - **Output**: `dist/`
 - **Code host**: GitHub `TheFool-yiqi/developerprofiles`

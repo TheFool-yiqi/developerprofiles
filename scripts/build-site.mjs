@@ -1,5 +1,5 @@
 /**
- * 构建作品集 + 将 student_ddl、startrail_notes、traveler_weather、traveler_ai 产出合并到 dist 子路径（Webify 单次部署）
+ * 构建作品集 + 将 student_ddl、startrail_notes、traveler_weather、traveler_ai 产出合并到 dist 子路径（EdgeOne Pages 单次部署）
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";

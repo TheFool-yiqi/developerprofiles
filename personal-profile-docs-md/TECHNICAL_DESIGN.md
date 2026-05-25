@@ -446,7 +446,7 @@ npm run build            # GitHub Pages 子路径备用
 
 ### 10.2 站点部署（国内节点，推荐）
 
-1. **腾讯云 Webify**：导入 GitHub 仓库 → 构建 `npm run build:root` → 发布 `dist` → 国内域名访问。
+1. **EdgeOne Pages**：导入 GitHub 或 Actions → 构建 `npm run build:site` → 发布 `dist` → 国内边缘节点访问。
 2. **阿里云 OSS / 腾讯云 COS + CDN**：本地或 CI 构建后上传 `dist/`。
 
 ### 10.3 GitHub Pages（备用）

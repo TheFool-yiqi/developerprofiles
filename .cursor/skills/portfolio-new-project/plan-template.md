@@ -45,7 +45,7 @@ flowchart LR
 
 ```text
 GitHub push
-    → Webify: npm run build:site
+    → EdgeOne Pages: npm run build:site
         → dist/
         → dist/student-ddl/
         → dist/startrail-notes/

@@ -15,7 +15,7 @@
 3. 个人资料集中在 `src/data/profile.ts`。  
 4. 对照参考站验收**布局结构**，禁止抄袭代码、素材与文案。  
 5. 首版使用**占位数据**；头像、简历 PDF 可后期放入 `public/`。  
-6. 部署目标：**代码托管在 GitHub**；**站点部署在腾讯云 Webify**（`build:root`）；GitHub Pages 仅备用。见 [docs/DEPLOY-TENCENT-WEBIFY.md](../docs/DEPLOY-TENCENT-WEBIFY.md)。
+6. 部署目标：**代码托管在 GitHub**；**站点部署在 EdgeOne Pages**（`build:site` / `build:root`）；GitHub Pages 仅备用。见 [docs/DEPLOY-EDGEONE-PAGES.md](../docs/DEPLOY-EDGEONE-PAGES.md)。
 
 ### 1.2 参考网站边界
 

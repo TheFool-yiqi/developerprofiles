@@ -31,7 +31,7 @@
 | 联系模块 | 首版 **仅展示链接**（无联系表单、无单独「联系」提交按钮） |
 | 头像 / 简历 | 可后期添加；简历为 `public/` 下 PDF（如 `/resume.pdf`） |
 | 动画 | 安装 `framer-motion`，仅用于克制模块进入动画 + CSS hover |
-| 部署 | **代码托管 GitHub**；**站点部署：腾讯云 Webify**；GitHub Pages 仅备用 |
+| 部署 | **代码托管 GitHub**；**站点部署：EdgeOne Pages**；GitHub Pages 仅备用 |
 | 内容数据 | 首版使用占位数据，上线后由用户替换 |
 
 ---
@@ -443,7 +443,7 @@ src/data/profile.ts
 
 ### 13.2 站点部署（国内）
 
-- 将 `npm run build:root` 产物发布到 **腾讯云 Webify**（从 GitHub 导入仓库自动构建）。操作见 `docs/DEPLOY-TENCENT-WEBIFY.md`。
+- 将 `npm run build:site` 产物发布到 **EdgeOne Pages**（GitHub Actions 或控制台 Git 导入）。操作见 `docs/DEPLOY-EDGEONE-PAGES.md`。
 - 访客从国内 CDN/机房访问，而非 GitHub Pages 海外节点。
 
 ### 13.3 备用

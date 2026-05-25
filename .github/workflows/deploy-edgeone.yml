@@ -1,0 +1,40 @@
+name: Deploy to EdgeOne Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-edgeone
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site with sub-apps
+        run: npm run build:site
+        env:
+          VITE_BASE: /
+          VITE_STUDENT_DDL_URL: /student-ddl/
+          VITE_STARTRAIL_NOTES_URL: /startrail-notes/
+          VITE_TRAVELER_WEATHER_URL: /traveler-weather/
+          VITE_TRAVELER_AI_URL: /traveler-ai/
+
+      - name: Deploy to EdgeOne Pages
+        run: npx edgeone pages deploy ./dist -n developerprofiles -t "$EDGEONE_API_TOKEN" -e production
+        env:
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}

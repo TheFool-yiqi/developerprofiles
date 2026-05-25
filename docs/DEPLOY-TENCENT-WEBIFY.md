@@ -1,7 +1,10 @@
-# 腾讯云 Webify 部署指南（已选定）
+# 腾讯云 Webify 部署指南（已弃用）
+
+> **本仓库已迁移至 EdgeOne Pages**，请使用 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)。  
+> 下文仅保留作历史参考。
 
 > **代码托管**：GitHub `TheFool-yiqi/developerprofiles`（不变）  
-> **站点部署**：腾讯云 Webify（国内节点）
+> **站点部署**：腾讯云 Webify（国内节点）— 不再用于本仓库发布
 
 ## 一、控制台配置（首次）
 

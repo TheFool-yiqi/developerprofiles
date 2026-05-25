@@ -3,7 +3,7 @@ name: portfolio-new-project
 description: >-
   Onboards a new showcase project into the developerprofiles personal portfolio:
   reads requirement, architecture, and AGENTS docs; clarifies ambiguities;
-  writes a confirmed integration plan; wires the next project card and Webify
+  writes a confirmed integration plan; wires the next project card and EdgeOne Pages
   build:site deployment like existing student_ddl / startrail_notes /
   traveler_weather entries. Use when adding a fifth (or next) portfolio project,
   旅伴AI, 作品栏, 新项目展示, or when the user provides 需求文档 + 技术架构文档 + AGENTS.md
@@ -126,7 +126,7 @@ Follow the file checklist in [reference.md](reference.md). Minimum set:
 | `src/config/projectUrls.ts` | `export const {camel}Url = import.meta.env.VITE_…` |
 | `.env.development` | `http://127.0.0.1:{port}/` |
 | `.env.root` / `.env.gitee` | `/{subpath}/` |
-| `cloudbaserc.json` | Add `VITE_*_URL` under `envVariables` |
+| `edgeone.json` / `.github/workflows/deploy-edgeone.yml` | 构建与环境变量（见 DEPLOY-EDGEONE-PAGES） |
 | `scripts/build-site.mjs` | Clone/build/copy block → `dist/{subpath}/` |
 | `docs/PROJECT-LINKS.md` | Local ports table + `build:site` output list |
 
@@ -155,7 +155,7 @@ Follow the file checklist in [reference.md](reference.md). Minimum set:
 4. **Card UX**: cover loads, 预览 + 源码 links work, copy matches plan.
 5. Update `docs/{slug}-PLAN.md` acceptance checklist — check completed items.
 
-Deployment (user operates Webify): push GitHub → Webify runs `npm run build:site` per [`cloudbaserc.json`](../../cloudbaserc.json) and [`docs/PROJECT-LINKS.md`](../../docs/PROJECT-LINKS.md). Do not change deploy platform unless user asks.
+Deployment (EdgeOne Pages): push GitHub → Actions runs `npm run build:site` per [`edgeone.json`](../../edgeone.json) and [`docs/PROJECT-LINKS.md`](../../docs/PROJECT-LINKS.md). Do not change deploy platform unless user asks.
 
 ---
 
@@ -165,7 +165,7 @@ Deployment (user operates Webify): push GitHub → Webify runs `npm run build:si
 - Do not add a project card before plan confirmation.
 - Do not use port 3001–3003 for a new app (already assigned).
 - Do not commit or push unless the user explicitly requests it.
-- Do not switch Webify to `build:root` if the new project uses same-domain subpath preview.
+- Do not switch to `build:root` only if the new project uses same-domain subpath preview (`build:site` required).
 
 ---
 
