@@ -120,4 +120,4 @@ npx edgeone pages deploy ./dist -n developerprofiles -t "<EDGEONE_API_TOKEN>" -e
 可以，仅作备用：`npm run build` + GitHub Pages，不要写进面向国内 HR 的主链接。
 
 **Q：旧版 Webify 配置在哪？**  
-历史文档见 [DEPLOY-TENCENT-WEBIFY.md](./DEPLOY-TENCENT-WEBIFY.md)（已弃用）；`cloudbaserc.json` 仅作迁移参考，不再用于发布。
+历史文档见 [DEPLOY-TENCENT-WEBIFY.md](./DEPLOY-TENCENT-WEBIFY.md)（已弃用）。仓库已移除 `cloudbaserc.json`，Webify CloudApp 与静态托管文件已清空。
