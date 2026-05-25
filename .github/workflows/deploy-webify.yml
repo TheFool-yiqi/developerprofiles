@@ -10,8 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  COS_BUCKET: fc25-static-cursor-d2gitn6fg62fef67d-1435930849
-  COS_REGION: ap-shanghai
+  TCB_ENV_ID: cursor-d2gitn6fg62fef67d
 
 jobs:
   deploy:
@@ -32,13 +31,15 @@ jobs:
       - name: Build site with sub-apps
         run: npm run build:site
 
-      - name: Setup COS CLI
-        uses: git9527/setup-coscli@v2
-        with:
-          region: ${{ env.COS_REGION }}
-          secret-id: ${{ secrets.TENCENT_SECRET_ID }}
-          secret-key: ${{ secrets.TENCENT_SECRET_KEY }}
-          bucket: ${{ env.COS_BUCKET }}
+      - name: Install CloudBase CLI
+        run: npm install -g @cloudbase/cli
 
-      - name: Upload dist to static hosting bucket
-        run: coscli sync ./dist/ cos://${{ env.COS_BUCKET }}/ -r
+      - name: Deploy to static hosting
+        env:
+          TENCENTCLOUD_SECRETID: ${{ secrets.TENCENT_SECRET_ID }}
+          TENCENTCLOUD_SECRETKEY: ${{ secrets.TENCENT_SECRET_KEY }}
+        run: |
+          set -euo pipefail
+          tcb login --apiKeyId "$TENCENTCLOUD_SECRETID" --apiKey "$TENCENTCLOUD_SECRETKEY"
+          # 部署到静态托管根路径（与 cloudbaserc deployPath: / 一致）
+          tcb hosting deploy ./dist / -e "$TCB_ENV_ID"
