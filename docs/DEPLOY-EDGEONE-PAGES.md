@@ -108,10 +108,40 @@ npx edgeone pages deploy ./dist -n developerprofiles -t "<EDGEONE_API_TOKEN>" -e
 
 ---
 
-## 六、常见问题
+## 六、访问与 401 说明（重要）
+
+EdgeOne 的 `*.edgeone.cool` **项目域名**在国内访问有合规鉴权，直接打开常会 **401**，属平台规则而非构建失败。
+
+| 现象 | 原因 |
+|------|------|
+| 打开 `https://developerprofiles-s1fnxmxn.edgeone.cool` 显示 401 | 项目为 **全球可用区（不含中国大陆）** 时，大陆网络访问项目域名会 401；或预览鉴权已过期 |
+| Actions 日志里有 `EDGEONE_DEPLOY_URL=...?eo_token=...` | 这是 **带鉴权的预览链接**，有效期约 **3 小时**，应用此链接访问 |
+
+### 临时访问（立即可用）
+
+1. 打开 GitHub **Actions** → 最近一次成功的 `Deploy to EdgeOne Pages` → 查看 **Summary** 或部署步骤日志中的 `EDGEONE_DEPLOY_URL`。
+2. 或在 [EdgeOne 控制台](https://console.cloud.tencent.com/edgeone/pages/project/pages-wjws62vhjy4i) 项目概览右上角点击 **预览**，复制带 `eo_token` 的链接。
+
+### 长期稳定访问（推荐）
+
+在控制台 **项目设置** 中任选其一：
+
+1. **绑定自定义域名**（最稳妥，简历可长期写此域名）  
+   - 加速区域为「全球不含中国大陆」时，自定义域名**无需备案**。  
+   - 加速区域为「中国大陆」或「全球含中国大陆」时，自定义域名通常需 **ICP 备案**。
+2. **修改加速区域**为「全球可用区（含中国大陆）」或「中国大陆可用区」，并继续用控制台「预览」链接（仍有时效，不如自定义域名）。
+
+API Token 建议在 [腾讯云 EdgeOne Pages 控制台](https://console.cloud.tencent.com/edgeone/pages)（中国站）创建，以便项目加速区域与大陆访问策略一致。
+
+---
+
+## 七、常见问题
 
 **Q：构建成功但部署报 Token 无效？**  
 检查 GitHub Secret 名称必须为 `EDGEONE_API_TOKEN`，且 Token 未过期。
+
+**Q：打开站点 401？**  
+见上文「访问与 401 说明」，不要只用裸 `*.edgeone.cool` 域名。
 
 **Q：页面空白或资源 404？**  
 确认使用 `build:site`（或 `build:root` 仅作品集时）且 `VITE_BASE=/`，部署目录为 `dist` 根路径。
