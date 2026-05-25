@@ -45,12 +45,11 @@ jobs:
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
         run: |
           coscli config add \
-            --bucket "${{ env.COS_BUCKET }}" \
-            --region "${{ env.COS_REGION }}" \
-            --secret-id "${TENCENT_SECRET_ID}" \
-            --secret-key "${TENCENT_SECRET_KEY}" \
-            --bucket-alias webify-deploy \
-            --force
+            -b "${{ env.COS_BUCKET }}" \
+            -r "${{ env.COS_REGION }}" \
+            -a webify-deploy \
+            --secret_id "${TENCENT_SECRET_ID}" \
+            --secret_key "${TENCENT_SECRET_KEY}"
 
       - name: Upload dist to static hosting bucket
         run: coscli sync ./dist/ cos://webify-deploy/ -r --delete
