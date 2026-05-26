@@ -10,6 +10,15 @@ lerna-debug.log*
 node_modules
 dist
 .tmp
+
+# Agent / Spec Kit（仅本地，不提交）
+.cursor/
+.specify/
+
+# Vite 环境变量（示例见 .env.example；CI 见 deploy-edgeone.yml）
+.env
+.env.*
+!.env.example
 # 子项目应在 sibling 目录（../student_ddl），勿复制到本仓库
 student_ddl/
 dist-ssr

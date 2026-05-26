@@ -14,7 +14,7 @@
 | 输出目录 | `dist` |
 | Node 版本 | 20 |
 
-环境变量（控制台「环境变量」页，与 `.env.root` 一致）：
+环境变量（控制台「环境变量」页，与 [`.env.example`](../.env.example) 中生产段一致）：
 
 | 变量名 | 值 |
 |--------|-----|
@@ -149,5 +149,5 @@ API Token 建议在 [腾讯云 EdgeOne Pages 控制台](https://console.cloud.te
 **Q：还想保留 GitHub Pages？**  
 可以，仅作备用：`npm run build` + GitHub Pages，不要写进面向国内 HR 的主链接。
 
-**Q：旧版 Webify 配置在哪？**  
-历史文档见 [DEPLOY-TENCENT-WEBIFY.md](./DEPLOY-TENCENT-WEBIFY.md)（已弃用）。仓库已移除 `cloudbaserc.json`，Webify CloudApp 与静态托管文件已清空。
+**Q：本地开发环境变量？**  
+复制 [`.env.example`](../.env.example) 为 `.env.development`（`npm run dev`）或 `.env.root`（`build:root` / `build:site`），勿提交 `.env*`。

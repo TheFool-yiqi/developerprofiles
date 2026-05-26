@@ -4,6 +4,8 @@
 
 ## 本地联调
 
+首次请复制环境变量：`cp .env.example .env.development`（Windows 可手动复制并重命名）。
+
 终端 1（作品集，端口 3000）：
 
 ```bash
