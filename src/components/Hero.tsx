@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Mail } from "lucide-react";
 import type { Profile } from "../data/types";
-import { hasProjects } from "../utils/sectionVisibility";
 import { publicUrl } from "../utils/publicUrl";
 import { btnPrimary, btnSecondaryDark, sectionDark } from "../utils/theme";
 
@@ -12,7 +11,6 @@ interface HeroProps {
 export default function Hero({ profile }: HeroProps) {
   const avatarSrc = profile.avatar ? publicUrl(profile.avatar) : undefined;
   const resumeSrc = profile.resumeUrl ? publicUrl(profile.resumeUrl) : undefined;
-  const projectsHref = hasProjects(profile) ? "#projects" : "#about";
   const avatarFallback = profile.initials;
 
   return (
@@ -54,8 +52,8 @@ export default function Hero({ profile }: HeroProps) {
             {profile.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={projectsHref} className={btnPrimary}>
-              查看项目
+            <a href="#about" className={btnPrimary}>
+              了解更多
             </a>
             {resumeSrc ? (
               <a

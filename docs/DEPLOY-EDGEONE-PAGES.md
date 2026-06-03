@@ -22,13 +22,9 @@
 | 变量名 | 值 |
 |--------|-----|
 | `VITE_BASE` | `/` |
-| `VITE_STUDENT_DDL_URL` | `/student-ddl/` |
-| `VITE_STARTRAIL_NOTES_URL` | `/startrail-notes/` |
-| `VITE_TRAVELER_WEATHER_URL` | `/traveler-weather/` |
-| `VITE_TRAVELER_AI_URL` | `/traveler-ai/` |
 | `VITE_ICP_BEIAN` | `粤ICP备2026068982号` |
 
-站点挂在域名**根路径** `/`；不要用 `/developerprofiles` 子路径部署。
+站点挂在域名**根路径** `/`；当前仅部署作品集主页，不含子项目子路径。
 
 ### 触发部署
 
@@ -68,18 +64,9 @@ npm run build:site
 
 ---
 
-## 四、子项目预览（已并入构建）
+## 四、页面结构说明
 
-构建命令 **`npm run build:site`** 会把子项目产出与作品集一并部署到 `/`：
-
-| 子项目 | 路径 | 作品集卡片 |
-|--------|------|------------|
-| [student_ddl](https://github.com/TheFool-yiqi/student_ddl) | `/student-ddl/` | 第二个 |
-| [startrail_notes](https://github.com/TheFool-yiqi/startrail_notes) | `/startrail-notes/` | 第三个 |
-| [traveler_weather](https://github.com/TheFool-yiqi/traveler_weather) | `/traveler-weather/` | 第四个 |
-| [traveler_ai](https://github.com/TheFool-yiqi/traveler_ai) | `/traveler-ai/` | 第五个 |
-
-本地联调见 [PROJECT-LINKS.md](./PROJECT-LINKS.md)。
+当前主页**不展示项目卡片**（`profile.projects` 为空时自动隐藏「项目」区块与导航）。`build:site` 仅构建作品集根站，不再克隆/打包 student_ddl 等子仓库。
 
 ---
 
@@ -87,7 +74,7 @@ npm run build:site
 
 - [ ] 自定义域名打开，首屏显示「刁雪猛」与头像
 - [ ] 页脚有 **粤ICP备2026068982号** 且链到 [beian.miit.gov.cn](https://beian.miit.gov.cn/)
-- [ ] 项目区各卡片「预览」可打开对应子路径
+- [ ] 导航无「项目」入口（或项目区已隐藏）
 - [ ] 手机 4G 访问正常
 - [ ] `git push` 后 EdgeOne 部署记录成功且线上更新
 

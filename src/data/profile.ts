@@ -1,10 +1,4 @@
 import type { Profile } from "./types";
-import {
-  startrailNotesUrl,
-  studentDdlUrl,
-  travelerAiUrl,
-  travelerWeatherUrl,
-} from "../config/projectUrls";
 
 export const profile: Profile = {
   name: "刁雪猛",
@@ -31,85 +25,6 @@ export const profile: Profile = {
     "Git",
     "React",
     "TypeScript",
-  ],
-  projects: [
-    {
-      title: "个人资料网站（developerprofiles）",
-      description:
-        "基于 React、TypeScript 与 Tailwind CSS 构建的响应式个人作品集站点，用于展示 Agent 应用开发相关技能、项目与教育背景。",
-      tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
-      image: "/projects/developerprofiles-cover.png",
-      repo: "https://github.com/TheFool-yiqi/developerprofiles",
-    },
-    {
-      title: "学生 DDL 助手（student_ddl）",
-      description:
-        "学生截止日期管理 MVP：录入 DDL、自动风险判断、按类型拆解子任务、今日 Top 3 推荐、多维筛选与学习数据统计，数据持久化于浏览器 localStorage。",
-      tech: [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Tailwind CSS",
-        "Vitest",
-        "date-fns",
-      ],
-      image: "/projects/student-ddl-cover.png",
-      link: studentDdlUrl,
-      repo: "https://github.com/TheFool-yiqi/student_ddl",
-    },
-    {
-      title: "星辉笔记（Startrail Notes）",
-      description:
-        "面向学习场景的纯前端 Markdown 笔记应用：组件化拆分编辑/预览链路、GFM 渲染与多语言代码高亮，LocalStorage 持久化与导入导出闭环，适合作为 Agent 辅助开发的前端工程样例。",
-      tech: [
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "react-markdown",
-        "LocalStorage",
-        "Vite",
-        "Vitest",
-      ],
-      image: "/projects/startrail-notes-cover.png",
-      link: startrailNotesUrl,
-      repo: "https://github.com/TheFool-yiqi/startrail_notes",
-    },
-    {
-      title: "旅行者校园天气助手（Traveler Weather）",
-      description:
-        "面向学生场景的纯前端天气应用：Open-Meteo 实时/小时/7 日预报，浏览器定位与收藏锚点，将 WMO 天气码映射为原创「元素状态」并生成通勤/运动/自习等校园行动建议，LocalStorage 持久化，作为 Agent 辅助开发的前端数据流样例。",
-      tech: [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Tailwind CSS",
-        "Zustand",
-        "Open-Meteo",
-        "Framer Motion",
-        "Vitest",
-      ],
-      image: "/projects/traveler-weather-cover.png",
-      link: travelerWeatherUrl,
-      repo: "https://github.com/TheFool-yiqi/traveler_weather",
-    },
-    {
-      title: "旅伴 AI（Travel Companion AI）",
-      description:
-        "面向学生场景的幻想冒险风 AI 聊天助手：多会话与五种模式 Prompt、ReadableStream 流式输出与 AbortController 中断、GFM Markdown 与代码高亮，LocalStorage 持久化与收藏/导出闭环；Mock 与 /api/chat 代理分层，适合作为 LLM 应用前端工程样例。",
-      tech: [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Tailwind CSS",
-        "Zustand",
-        "react-router-dom",
-        "react-markdown",
-        "Vitest",
-      ],
-      image: "/projects/traveler-ai-cover.png",
-      link: travelerAiUrl,
-      repo: "https://github.com/TheFool-yiqi/traveler_ai",
-    },
   ],
   experience: [
     {
