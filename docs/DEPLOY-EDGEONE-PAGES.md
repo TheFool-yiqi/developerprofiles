@@ -15,7 +15,7 @@
 | 安装命令 | `npm ci` |
 | 构建命令 | `npm run build:site` |
 | 输出目录 | `dist` |
-| Node 版本 | 20 |
+| Node 版本 | 22.17.1（见 [`edgeone.json`](../edgeone.json)、[`.nvmrc`](../.nvmrc)；Vite 8 需 20.19+ 或 22.12+） |
 
 ### 环境变量（控制台「环境变量」页，必填）
 
