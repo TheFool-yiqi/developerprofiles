@@ -55,13 +55,13 @@ GitHub Pages 仅适合备用预览，**不要**作为国内招聘/分享的主�
 ## 方案 A：EdgeOne Pages（**已选定**，代码仍在 GitHub）
 
 1. 登录 [EdgeOne Pages 控制台](https://console.cloud.tencent.com/edgeone/pages)。
-2. **新建项目** → **从 GitHub 导入**（或使用本仓库 GitHub Actions，见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)）。
+2. **新建项目** → **从 GitHub 导入**（生产部署；Actions 仅 CI 构建，见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)）。
 3. 构建配置（与根目录 `edgeone.json` 一致）：
    - 安装：`npm ci`
    - 构建：`npm run build:site`（含子应用；仅作品集时用 `build:root`）
    - 输出：`dist`
    - Node：20
-4. 环境变量：`VITE_BASE=/` 及子项目 URL（见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)）。
+4. 环境变量：`VITE_BASE=/`、子项目 URL、`VITE_ICP_BEIAN=粤ICP备2026068982号`（见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)）。
 5. 使用平台分配的**访问域名**或绑定自定义域名。
 
 **推荐 `build:site`**：一次构建作品集 + 同域子路径预览。

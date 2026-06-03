@@ -35,7 +35,7 @@ npm run build          # GitHub Pages 子路径备用
 ## 部署流程（摘要）
 
 1. 在 GitHub 正常开发：`git push origin master`
-2. 按 [docs/DEPLOY-EDGEONE-PAGES.md](docs/DEPLOY-EDGEONE-PAGES.md) 配置 **EdgeOne Pages**（GitHub Actions 或控制台 Git 导入）
+2. 按 [docs/DEPLOY-EDGEONE-PAGES.md](docs/DEPLOY-EDGEONE-PAGES.md) 配置 **EdgeOne Pages**（控制台 GitHub 导入；Actions 仅构建校验）
 3. 对外分享 **EdgeOne 分配的域名**，不要用 GitHub Pages 作为国内主链接
 
 ## 文档
