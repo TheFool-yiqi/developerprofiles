@@ -151,3 +151,20 @@ API Token 建议在 [腾讯云 EdgeOne Pages 控制台](https://console.cloud.te
 
 **Q：本地开发环境变量？**  
 复制 [`.env.example`](../.env.example) 为 `.env.development`（`npm run dev`）或 `.env.root`（`build:root` / `build:site`），勿提交 `.env*`。
+
+**Q：如何悬挂 ICP 备案号？**  
+依据 [腾讯云备案号悬挂说明](https://cloud.tencent.com/document/product/243/61412)：
+
+1. 在页脚展示备案号，并链接 [https://beian.miit.gov.cn/](https://beian.miit.gov.cn/)。
+2. **非广东省**填 **服务备案号**；**广东省**填 **主体备案号**（在腾讯云备案控制台可查）。
+3. 主域名与 `www` 域名均需可访问且页脚有备案号。
+4. 公安备案通过后，再填 `VITE_GONGAN_BEIAN`（可选 `VITE_GONGAN_BEIAN_URL`）。
+
+构建时设置环境变量（与 Actions 一致）：
+
+| 变量 | 示例 |
+|------|------|
+| `VITE_ICP_BEIAN` | `京ICP备12345678号` |
+| `VITE_GONGAN_BEIAN` | `京公网安备11010802012345号`（公安备案通过后） |
+
+GitHub Actions 已在 [`deploy-edgeone.yml`](../.github/workflows/deploy-edgeone.yml) 配置 `VITE_ICP_BEIAN=粤ICP备2026068982号`；本地生产构建写入 `.env.root` 即可。

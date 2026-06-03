@@ -33,6 +33,8 @@ jobs:
           VITE_STARTRAIL_NOTES_URL: /startrail-notes/
           VITE_TRAVELER_WEATHER_URL: /traveler-weather/
           VITE_TRAVELER_AI_URL: /traveler-ai/
+          VITE_ICP_BEIAN: 粤ICP备2026068982号
+          VITE_GONGAN_BEIAN: ${{ secrets.VITE_GONGAN_BEIAN }}
 
       - name: Deploy to EdgeOne Pages
         id: deploy
