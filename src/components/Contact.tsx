@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, MessageCircle, Phone } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import type { Profile } from "../data/types";
 import { cardOnLight, sectionLight } from "../utils/theme";
 import SectionHeading from "./SectionHeading";
@@ -8,23 +8,14 @@ interface ContactProps {
   profile: Profile;
 }
 
-type ContactEntry =
-  | {
-      key: string;
-      label: string;
-      display: string;
-      href: string;
-      external: boolean;
-      icon: typeof Github;
-    }
-  | {
-      key: string;
-      label: string;
-      display: string;
-      icon: typeof MessageCircle;
-      external?: never;
-      href?: never;
-    };
+type ContactEntry = {
+  key: string;
+  label: string;
+  display: string;
+  href?: string;
+  external?: boolean;
+  icon: typeof Github;
+};
 
 export default function Contact({ profile }: ContactProps) {
   const entries: ContactEntry[] = [];
@@ -40,33 +31,14 @@ export default function Contact({ profile }: ContactProps) {
     });
   }
 
-  entries.push({
-    key: "email",
-    label: "邮箱",
-    display: profile.email,
-    href: `mailto:${profile.email}`,
-    external: false,
-    icon: Mail,
-  });
-
-  if (profile.socials?.wechat) {
+  if (profile.email) {
     entries.push({
-      key: "wechat",
-      label: "微信",
-      display: profile.socials.wechat,
-      icon: MessageCircle,
-    });
-  }
-
-  if (profile.socials?.phone) {
-    const phone = profile.socials.phone.replace(/\s/g, "");
-    entries.push({
-      key: "phone",
-      label: "手机号",
-      display: profile.socials.phone,
-      href: `tel:${phone}`,
+      key: "email",
+      label: "邮箱",
+      display: profile.email,
+      href: `mailto:${profile.email}`,
       external: false,
-      icon: Phone,
+      icon: Mail,
     });
   }
 
@@ -82,7 +54,7 @@ export default function Contact({ profile }: ContactProps) {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           title="联系"
-          subtitle="GitHub、邮箱、微信与手机号"
+          subtitle="GitHub 与邮箱"
           variant="light"
         />
         <ul className="grid gap-4 sm:grid-cols-2">

@@ -11,7 +11,7 @@ export const profile: Profile = {
   initials: "DXM",
   role: "Agent 应用开发工程师",
   location: "上海",
-  email: "845278588@qq.com",
+  email: "diaoxingxing147@gmail.com",
   avatar: "/avatar.png",
   intro: "紧跟时代潮流，关注 AI 前沿，专注于 Agent 应用开发。",
   about:
@@ -124,7 +124,5 @@ export const profile: Profile = {
   ],
   socials: {
     github: "https://github.com/TheFool-yiqi",
-    wechat: "13314207284",
-    phone: "13314207284",
   },
 };

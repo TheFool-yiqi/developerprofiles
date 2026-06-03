@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, MessageCircle, Phone } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import type { Profile } from "../data/types";
 import { hasProjects } from "../utils/sectionVisibility";
 import { publicUrl } from "../utils/publicUrl";
@@ -80,29 +80,13 @@ export default function Hero({ profile }: HeroProps) {
                 <Github size={20} />
               </a>
             ) : null}
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="发送邮件"
-              className="rounded-full border border-panda-charcoal p-2.5 text-panda-cream transition hover:border-panda-white hover:text-panda-white"
-            >
-              <Mail size={20} />
-            </a>
-            {profile.socials?.wechat ? (
-              <span
-                className="inline-flex items-center gap-1.5 rounded-full border border-panda-charcoal px-3 py-2 text-sm text-panda-cream"
-                title={`微信：${profile.socials.wechat}`}
-              >
-                <MessageCircle size={18} />
-                微信
-              </span>
-            ) : null}
-            {profile.socials?.phone ? (
+            {profile.email ? (
               <a
-                href={`tel:${profile.socials.phone.replace(/\s/g, "")}`}
-                aria-label="拨打电话"
+                href={`mailto:${profile.email}`}
+                aria-label="发送邮件"
                 className="rounded-full border border-panda-charcoal p-2.5 text-panda-cream transition hover:border-panda-white hover:text-panda-white"
               >
-                <Phone size={20} />
+                <Mail size={20} />
               </a>
             ) : null}
           </div>

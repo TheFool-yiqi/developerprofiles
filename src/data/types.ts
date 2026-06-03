@@ -31,7 +31,7 @@ export interface Profile {
   initials: string;
   role: string;
   location?: string;
-  email: string;
+  email?: string;
   avatar?: string;
   resumeUrl?: string;
   intro: string;
