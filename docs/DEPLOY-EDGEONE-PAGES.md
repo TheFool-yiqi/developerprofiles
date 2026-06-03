@@ -26,6 +26,8 @@
 
 站点挂在域名**根路径** `/`；当前仅部署作品集主页，不含子项目子路径。
 
+若控制台仍留有子项目变量，请按 [EDGEONE-ENV-CLEANUP.md](./EDGEONE-ENV-CLEANUP.md) 删除 `VITE_STUDENT_DDL_URL` 等 4 项。
+
 ### 触发部署
 
 ```bash

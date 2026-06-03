@@ -61,10 +61,10 @@ GitHub Pages 仅适合备用预览，**不要**作为国内招聘/分享的主�
    - 构建：`npm run build:site`（含子应用；仅作品集时用 `build:root`）
    - 输出：`dist`
    - Node：20
-4. 环境变量：`VITE_BASE=/`、子项目 URL、`VITE_ICP_BEIAN=粤ICP备2026068982号`（见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)）。
+4. 环境变量：仅 `VITE_BASE=/` 与 `VITE_ICP_BEIAN=粤ICP备2026068982号`（删除子项目变量见 [EDGEONE-ENV-CLEANUP.md](./EDGEONE-ENV-CLEANUP.md)）。
 5. 使用平台分配的**访问域名**或绑定自定义域名。
 
-**推荐 `build:site`**：一次构建作品集 + 同域子路径预览。
+**`build:site`**：当前仅构建作品集根站（等同 `build:root`）。
 
 ---
 
