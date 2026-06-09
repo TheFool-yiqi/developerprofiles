@@ -26,5 +26,5 @@ foreach ($key in $toRemove) {
 Write-Host "`n删除后环境变量:"
 npx -y edgeone pages env ls
 
-Write-Host "`n请确认保留: VITE_BASE=/ 与 VITE_ICP_BEIAN=粤ICP备2026068982号"
+Write-Host "`n请确认保留: VITE_BASE=/、VITE_ICP_BEIAN、VITE_GONGAN_BEIAN、VITE_GONGAN_BEIAN_URL"
 Write-Host "然后在控制台触发一次重新部署。"

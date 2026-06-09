@@ -23,6 +23,8 @@
 |--------|-----|
 | `VITE_BASE` | `/` |
 | `VITE_ICP_BEIAN` | `粤ICP备2026068982号` |
+| `VITE_GONGAN_BEIAN` | `粤公网安备44030002013359号` |
+| `VITE_GONGAN_BEIAN_URL` | `https://beian.mps.gov.cn/#/query/webSearch?code=44030002013359` |
 
 站点挂在域名**根路径** `/`；当前仅部署作品集主页，不含子项目子路径。
 

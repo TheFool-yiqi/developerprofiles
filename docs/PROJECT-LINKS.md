@@ -27,5 +27,7 @@ npm run build:site   # 仅输出 dist/ 作品集
 |------|-----|
 | `VITE_BASE` | `/` |
 | `VITE_ICP_BEIAN` | `粤ICP备2026068982号` |
+| `VITE_GONGAN_BEIAN` | `粤公网安备44030002013359号` |
+| `VITE_GONGAN_BEIAN_URL` | `https://beian.mps.gov.cn/#/query/webSearch?code=44030002013359` |
 
 完整部署见 [DEPLOY-EDGEONE-PAGES.md](./DEPLOY-EDGEONE-PAGES.md)。
