@@ -17,7 +17,9 @@
 | 输出目录 | `dist` |
 | Node 版本 | 22.17.1（见 [`edgeone.json`](../edgeone.json)、[`.nvmrc`](../.nvmrc)；Vite 8 需 20.19+ 或 22.12+） |
 
-### 环境变量（控制台「环境变量」页，必填）
+### 环境变量（控制台「环境变量」页）
+
+可整段粘贴根目录 [`edgeone.env`](../edgeone.env)（或运行 `scripts/sync-edgeone-env.ps1`）：
 
 | 变量名 | 值 |
 |--------|-----|
